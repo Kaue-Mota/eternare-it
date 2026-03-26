@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
 import ReactQRCode from 'react-qr-code'
+import QRCodeLib from 'qrcode'
+
 const QRCode = (ReactQRCode as any).default ?? ReactQRCode
 
 export function SuccessPage() {
@@ -96,26 +98,18 @@ export function SuccessPage() {
 }
 
 // ── gera e baixa o QR Code como PNG via canvas ────────────────────────────────
-function downloadQR(url: string, slug: string) {
-  const svg = document.querySelector('svg') as SVGSVGElement | null
-  if (!svg) return
 
-  const svgData = new XMLSerializer().serializeToString(svg)
+
+async function downloadQR(url: string, slug: string) {
   const canvas = document.createElement('canvas')
-  canvas.width = 400
-  canvas.height = 400
-
-  const ctx = canvas.getContext('2d')!
-  const img = new Image()
-  img.onload = () => {
-    ctx.fillStyle = '#ffffff'
-    ctx.fillRect(0, 0, 400, 400)
-    ctx.drawImage(img, 20, 20, 360, 360)
-
-    const link = document.createElement('a')
-    link.download = `eternare-${slug}.png`
-    link.href = canvas.toDataURL('image/png')
-    link.click()
-  }
-  img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)))
+  await QRCodeLib.toCanvas(canvas, url, {
+    width: 400,
+    margin: 2,
+    color: { dark: '#09090f', light: '#ffffff' },
+  })
+  const link = document.createElement('a')
+  link.download = `eternare-${slug}.png`
+  link.href = canvas.toDataURL('image/png')
+  link.click()
 }
+  

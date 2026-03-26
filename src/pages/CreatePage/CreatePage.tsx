@@ -9,6 +9,7 @@ import { StepVisual } from '../../components/steps/StepVisual'
 import { StepMusic } from '../../components/steps/StepMusic'
 import { StepReview } from '../../components/steps/StepReview'
 import PS3Background from '../../components/ui/BackgroundAnimated'
+import { Link } from 'react-router-dom'
 
 
 
@@ -34,19 +35,15 @@ export function CreatePage() {
     <><div className="min-h-screen white">
 
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/[0.06] bg-[#09090f]/85 backdrop-blur-lg">
-        <a href="/" className="flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white transition-colors">
-          <div
-            className="w-7 h-7 rounded-lg flex items-center justify-center"
-            style={{ background: 'linear-gradient(135deg, #7c6aff, #b06fff)' }}
-          >
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-              <path d="M8 2C8 2 4 5 4 8.5C4 10.985 5.79 13 8 13C10.21 13 12 10.985 12 8.5C12 5 8 2 8 2Z" fill="white" fillOpacity="0.9" />
-              <path d="M8 6C8 6 6 7.5 6 9C6 10.105 6.895 11 8 11C9.105 11 10 10.105 10 9C10 7.5 8 6 8 6Z" fill="white" fillOpacity="0.4" />
-            </svg>
-          </div>
-          eternare.it
-        </a>
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6  border-b border-white/6 bg-[#09090f]/85 backdrop-blur-lg">
+        <Link to="/" className="flex items-center gap-3">
+            <img
+              
+              src="/images/logo/TIPOLOGO.png"
+              alt="Eternare.it"
+              className="h-auto w-15 scale-200 ml-5 object-contain"
+            />
+          </Link>
 
         {/* Barra de progresso — esconde na revisão */}
         {!isReview && (
@@ -62,7 +59,7 @@ export function CreatePage() {
                     type="button"
                     onClick={() => isDone && goToStep(s)}
                     disabled={!isDone}
-                    className="h-[3px] rounded-full transition-all duration-300"
+                    className="h-0.75 rounded-full transition-all duration-300"
                     style={{
                       width: isActive ? 24 : 12,
                       background: isDone
