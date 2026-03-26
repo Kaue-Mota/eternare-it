@@ -3,6 +3,10 @@
     {
       "source": "/api/:path*",
       "destination": "https://eternare-it-production.up.railway.app/api/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
