@@ -72,58 +72,60 @@ export function StepReview({ data, onEdit, onBack }: Props) {
   ];
 
   async function handleCheckout() {
-    setLoading(true);
-    setError(null);
+  setLoading(true)
+  setError(null)
 
-    try {
-      // 1. monta o FormData com fotos + campos de texto
-      const formData = new FormData();
-      data.photos
-        .filter(Boolean)
-        .forEach((file) => formData.append("photos", file));
-      formData.append("title", data.title);
-      formData.append("date", data.date);
-      formData.append("text", data.text);
-      formData.append("bgColor", data.bgColor);
-      if (data.spotifyUrl) formData.append("spotifyUrl", data.spotifyUrl);
+  try {
+    const formData = new FormData()
+    const photos = data.photos.filter(Boolean)
+    
+    console.log('Fotos:', photos.length)
+    
+    photos.forEach((file) => formData.append('photos', file))
+    formData.append('title', data.title)
+    formData.append('date', data.date)
+    formData.append('text', data.text)
+    formData.append('bgColor', data.bgColor)
+    if (data.spotifyUrl) formData.append('spotifyUrl', data.spotifyUrl)
 
-      // 2. cria a memória no banco (paid = false)
-      const createRes = await fetch("/api/memory", {
-        method: "POST",
-        body: formData,
-      });
+    console.log('Enviando para /api/memory...')
 
-      if (!createRes.ok) {
-        const body = await createRes.json();
-        throw new Error(body.error || "Erro ao salvar memória");
-      }
-      const { slug } = await createRes.json();
+    const createRes = await fetch('/api/memory', {
+      method: 'POST',
+      body: formData,
+    })
 
-      // 3. cria a sessão de checkout no Stripe
-      const checkoutRes = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ slug }),
-      });
+    console.log('Status:', createRes.status)
+    
+    const createBody = await createRes.json()
+    console.log('Body:', createBody)
 
-      if (!checkoutRes.ok) {
-        const body = await checkoutRes.json();
-        throw new Error(body.error || "Erro ao iniciar pagamento");
-      }
-
-      const { url } = await checkoutRes.json();
-
-      // 4. redireciona para o Stripe Checkout
-      window.location.href = url;
-    } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : "Algo deu errado. Tente novamente.",
-      );
-      setLoading(false);
+    if (!createRes.ok) {
+      throw new Error(createBody.error || 'Erro ao salvar memória')
     }
+
+    const { slug } = createBody
+
+    const checkoutRes = await fetch('/api/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ slug }),
+    })
+
+    const checkoutBody = await checkoutRes.json()
+    console.log('Checkout:', checkoutBody)
+
+    if (!checkoutRes.ok) {
+      throw new Error(checkoutBody.error || 'Erro ao iniciar pagamento')
+    }
+
+    window.location.href = checkoutBody.url
+  } catch (err) {
+    console.error('Erro completo:', err)
+    setError(err instanceof Error ? err.message : 'Algo deu errado. Tente novamente.')
+    setLoading(false)
   }
+}
 
   return (
     <div className="flex flex-col gap-6">
