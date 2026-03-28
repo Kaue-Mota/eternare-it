@@ -48,7 +48,7 @@ function PhotoCarousel({ photos }: { photos: string[] }) {
   }, [photos.length])
 
   return (
-    <div className="px-5">
+    <div className="px-5 py-10">
       <div className="bg-white rounded-2xl p-3 pb-10 shadow-2xl">
         <div className="relative w-full overflow-hidden rounded-xl">
           <div
