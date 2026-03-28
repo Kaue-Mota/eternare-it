@@ -61,8 +61,8 @@ export function Footer() {
             { label: 'Sobre', to: '/sobre' },
             { label: 'Suporte', to: '/suporte' },
           ].map((link) =>
-            link.href ? (
-              <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"
+            link.to ? (
+              <a key={link.label} href={link.to} target="_blank" rel="noopener noreferrer"
                 className="text-[13px] transition-colors hover:text-white"
                 style={{ color: 'rgba(240,238,248,0.35)' }}>
                 {link.label}
