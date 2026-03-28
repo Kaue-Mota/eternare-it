@@ -22,19 +22,9 @@ export default function Header() {
 
           {/* Desktop Nav */}
           <nav className="hidden items-center gap-10 md:flex">
-            <a
-              href="#sobre"
-              className="text-[15px] font-medium text-white/65 transition-colors duration-200 hover:text-white"
-            >
-              Sobre
-            </a>
+            <Link to="/sobre">Sobre</Link>
 
-            <a
-              href="#suporte"
-              className="text-[15px] font-medium text-white/65 transition-colors duration-200 hover:text-white"
-            >
-              Suporte
-            </a>
+            <Link to="/suporte">Suporte</Link>
 
             <Link
               to="/criar"
@@ -87,21 +77,21 @@ export default function Header() {
             Início
           </Link>
 
-          <a
-            href="#sobre"
+          <Link
+            to="/sobre"
             className="border-t border-white/10 py-5 text-[15px] font-medium text-white/85 transition-colors hover:text-white"
             onClick={() => setMenuOpen(false)}
           >
             Sobre
-          </a>
+          </Link>
 
-          <a
-            href="#suporte"
+          <Link
+            to="/suporte"
             className="border-y border-white/10 py-5 text-[15px] font-medium text-white/85 transition-colors hover:text-white"
             onClick={() => setMenuOpen(false)}
           >
             Suporte
-          </a>
+          </Link>
 
           <Link
             to="/criar"

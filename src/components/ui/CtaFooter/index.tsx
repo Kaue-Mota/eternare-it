@@ -58,8 +58,8 @@ export function Footer() {
         {/* Links de navegação */}
         <div className="flex flex-wrap gap-5">
           {[
-            { label: 'Sobre', to: '/' },
-            { label: 'Suporte', href: 'https://wa.me/5561991014779' },
+            { label: 'Sobre', to: '/sobre' },
+            { label: 'Suporte', to: '/suporte' },
           ].map((link) =>
             link.href ? (
               <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"

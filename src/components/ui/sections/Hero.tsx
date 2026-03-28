@@ -65,7 +65,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll hint */}
-      <div className="absolute bottom-15 left-1/2 flex -translate-x-1/2 flex-col items-center z-10 gap-2 animate-bounce">
+      <div className="absolute bottom-15 left-1/2 flex -translate-x-1/2 flex-col items-center z-10 gap-2 animate-bounce hidden lg:flex">
         <p
           className="text-[10px] uppercase tracking-widest"
           style={{ color: "rgba(240,238,248,0.50)" }}
