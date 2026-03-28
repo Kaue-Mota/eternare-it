@@ -28,7 +28,7 @@ export async function sendMemoryEmail({
   const qrBase64 = qrBuffer.toString('base64')
 
   await resend.emails.send({
-    from: 'Eternare <onboarding@resend.dev>',
+    from: 'Eternare <noreply@eternareit.com>',
     to,
     subject: `Sua memória "${memoryTitle}" está pronta ✨`,
     attachments: [
