@@ -4,9 +4,9 @@ import { CreatePage } from "../pages/CreatePage/CreatePage";
 import { SuccessPage } from "../pages/SuccessPage";
 import MemoryPage from "../pages/Memory/MemoryPage";
 import { MemoryPagePreview } from "../pages/Memory/MemoryPagePreview";
-import { TermsPage } from "../pages/legal/TermsPage";
-import { PrivacyPage } from "../pages/legal/PrivacyPage";
-import { RefundPage } from "../pages/legal/RefundPage";
+import { TermsPage } from "../pages/Legal/TermsPage";
+import { PrivacyPage } from "../pages/Legal/PrivacyPage";
+import { RefundPage } from "../pages/Legal/RefundPage";
 import { AboutPage } from "../pages/AboutPage/AboutPage";
 import { SupportPage } from "../pages/SupportPage/SupportPage";
 
