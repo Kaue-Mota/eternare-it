@@ -108,3 +108,12 @@ body {
   50% { opacity: 0.8; }
   100% { opacity: 0.4; }
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

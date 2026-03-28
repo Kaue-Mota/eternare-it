@@ -34,32 +34,29 @@ const EXAMPLES = [
   },
 ]
 
-function MemoryCard({ example, active }: { example: typeof EXAMPLES[0]; active: boolean }) {
+function MemoryCard({ example }: { example: typeof EXAMPLES[0] }) {
   return (
     <div
-      className="rounded-2xl overflow-hidden flex-shrink-0 transition-all duration-500 select-none"
+      className="rounded-2xl overflow-hidden w-full flex-shrink-0"
       style={{
-        width: active ? 220 : 160,
-        opacity: active ? 1 : 0.5,
-        transform: active ? 'scale(1)' : 'scale(0.92)',
         background: example.bgColor,
         border: '1px solid rgba(255,255,255,0.08)',
       }}
     >
       {/* Foto polaroid */}
-      <div className="p-2.5 pb-0">
-        <div className="bg-white rounded-xl p-1.5 pb-6">
+      <div className="p-3 pb-0">
+        <div className="bg-white rounded-xl p-2 pb-7">
           <div className="rounded-lg overflow-hidden aspect-square">
             <img src={example.photo} alt="" className="w-full h-full object-cover block" />
           </div>
-          <p className="text-[8px] tracking-widest uppercase text-black/20 text-center mt-1.5 font-medium">
+          <p className="text-[8px] tracking-widest uppercase text-black/20 text-center mt-2 font-medium">
             eternare
           </p>
         </div>
       </div>
 
       {/* Conteúdo */}
-      <div className="px-3 pb-4 pt-3">
+      <div className="px-3 pb-5 pt-3">
         <div
           className="rounded-lg px-2 py-1.5 text-center text-[9px] font-semibold mb-3"
           style={{ background: 'rgba(124,106,255,0.15)', border: '1px solid rgba(124,106,255,0.2)', color: '#b06fff' }}
@@ -69,7 +66,7 @@ function MemoryCard({ example, active }: { example: typeof EXAMPLES[0]; active: 
 
         <div className="flex items-start gap-1.5 mb-1">
           <div className="w-[2px] self-stretch rounded-sm flex-shrink-0 bg-red-600 mt-0.5" />
-          <p className="text-[11px] font-extrabold uppercase tracking-wider text-white leading-tight">
+          <p className="text-[12px] font-extrabold uppercase tracking-wider text-white leading-tight">
             {example.title}
           </p>
         </div>
@@ -78,7 +75,7 @@ function MemoryCard({ example, active }: { example: typeof EXAMPLES[0]; active: 
           {example.date}
         </p>
 
-        <p className="text-[9px] leading-relaxed" style={{ color: 'rgba(240,238,248,0.6)' }}>
+        <p className="text-[10px] leading-relaxed" style={{ color: 'rgba(240,238,248,0.6)' }}>
           {example.text}
         </p>
       </div>
@@ -87,16 +84,16 @@ function MemoryCard({ example, active }: { example: typeof EXAMPLES[0]; active: 
 }
 
 export function Examples() {
-  const [active, setActive] = useState(1)
+  const [active, setActive] = useState(0)
 
   const prev = () => setActive(i => (i === 0 ? EXAMPLES.length - 1 : i - 1))
   const next = () => setActive(i => (i === EXAMPLES.length - 1 ? 0 : i + 1))
 
   return (
-    <section className="bg-[rgba(5,6,18,0.88)]  backdrop-blur-lg py-24 overflow-hidden">
+    <section className="bg-[rgba(5,6,18,0.88)] backdrop-blur-lg py-24">
       <div className="max-w-4xl mx-auto px-6">
 
-        {/* Header da seção */}
+        {/* Header */}
         <div className="text-center mb-16">
           <p className="text-[11px] tracking-[0.18em] uppercase text-[#7c6aff] mb-3">
             Exemplos de memórias
@@ -111,7 +108,7 @@ export function Examples() {
         </div>
 
         {/* Carrossel */}
-        <div className="relative flex items-center justify-center gap-4">
+        <div className="flex items-center gap-4">
 
           {/* Botão prev */}
           <button
@@ -124,11 +121,20 @@ export function Examples() {
             </svg>
           </button>
 
-          {/* Cards */}
-          <div className="flex items-center gap-4 overflow-hidden">
-            {EXAMPLES.map((ex, i) => (
-              <MemoryCard key={ex.id} example={ex} active={i === active} />
-            ))}
+          {/* Track deslizante */}
+          <div className="flex-1 overflow-hidden rounded-2xl">
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${active * 100}%)` }}
+            >
+              {EXAMPLES.map((ex) => (
+                <div key={ex.id} className="min-w-full px-1">
+                  <div className="max-w-[240px] mx-auto">
+                    <MemoryCard example={ex} />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Botão next */}
@@ -141,10 +147,11 @@ export function Examples() {
               <path d="M9 18l6-6-6-6" />
             </svg>
           </button>
+
         </div>
 
         {/* Label do card ativo */}
-        <p className="text-center mt-8 text-[12px] tracking-widest uppercase text-white/30">
+        <p className="text-center mt-6 text-[12px] tracking-widest uppercase text-white/30">
           {EXAMPLES[active].label}
         </p>
 

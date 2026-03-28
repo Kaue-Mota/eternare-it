@@ -29,7 +29,7 @@ export const step3Schema = z.object({
   text: z
     .string()
     .min(1, 'Escreva pelo menos uma frase')
-    .max(600, 'Texto muito longo — máximo 600 caracteres'),
+    .max(1200, 'Texto muito longo — máximo 1200 caracteres'),
 })
 
 export const step4Schema = z.object({
