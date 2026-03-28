@@ -3,7 +3,7 @@
 
 export function BackgroundLight() {
   return (
-    <div className="fixed -z-999 pointer-events-none" aria-hidden="true">
+    <div className="fixed z-0 h-full pointer-events-none" aria-hidden="true">
       <style>{`
         @keyframes pulse1 {
           0%, 100% { opacity: 0.5; transform: scale(1); }

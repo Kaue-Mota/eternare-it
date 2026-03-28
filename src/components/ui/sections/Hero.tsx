@@ -4,7 +4,7 @@ export default function Hero() {
   const navigate = useNavigate();
 
   return (
-    <section className="relative h-full overflow-hidden  px-6 pt-32 pb-12 md:px-10 lg:px-16">
+    <section className="relative h-full overflow-hidden px-6 pt-32 pb-12 md:px-10 lg:px-16">
       
       <div className="relative z-10 mx-auto grid min-h-[calc(100vh-8rem)] w-full max-w-7xl grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-20">
         {/* Coluna esquerda */}
