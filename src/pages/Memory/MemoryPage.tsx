@@ -196,12 +196,9 @@ export default function MemoryPage() {
                 className="w-[22px] h-[22px] rounded-md flex items-center justify-center flex-shrink-0"
                 style={{ background: 'linear-gradient(135deg, #7c6aff, #b06fff)' }}
               >
-                <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
-                  <path d="M8 2C8 2 4 5 4 8.5C4 10.985 5.79 13 8 13C10.21 13 12 10.985 12 8.5C12 5 8 2 8 2Z" fill="white" fillOpacity="0.9" />
-                  <path d="M8 6C8 6 6 7.5 6 9C6 10.105 6.895 11 8 11C9.105 11 10 10.105 10 9C10 7.5 8 6 8 6Z" fill="white" fillOpacity="0.4" />
-                </svg>
+                
               </div>
-              <span className="text-[12px] font-medium" style={{ color: 'rgba(255,255,255,0.25)' }}>eternare.it</span>
+              <span className="text-[12px] font-medium" style={{ color: 'rgba(255,255,255,0.25)' }}>eternareit.com</span>
             </div>
             <span className="text-[11px]" style={{ color: 'rgba(255,255,255,0.15)' }}>/m/{memory.slug}</span>
           </div>
