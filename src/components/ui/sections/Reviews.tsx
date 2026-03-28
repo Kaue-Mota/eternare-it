@@ -49,12 +49,8 @@ function Stars({ count }: { count: number }) {
 
 export function Reviews() {
   return (
-    <section className="py-24 relative min-h-screen overflow-hidden bg-[#0a0a1f]" >
-      {/* glow roxo */}
-  <div className="absolute -top-40 -left-40 h-100 w-100 rounded-full bg-purple-600/30 blur-[120px]" />
-
-  {/* glow azul */}
-  <div className="absolute top-40 -right-25 h-100 w-100 rounded-full bg-blue-500/30 blur-[120px]" />
+    <section className=" relative pb-24 min-h-screen overflow-hidden " >
+    
 
   {/* conteúdo */}
   <div className="relative mt-40 z-10">
