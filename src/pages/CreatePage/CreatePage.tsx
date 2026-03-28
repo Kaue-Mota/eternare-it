@@ -8,8 +8,9 @@ import { StepText } from '../../components/steps/StepText'
 import { StepVisual } from '../../components/steps/StepVisual'
 import { StepMusic } from '../../components/steps/StepMusic'
 import { StepReview } from '../../components/steps/StepReview'
-import PS3Background from '../../components/ui/BackgroundAnimated'
+
 import { Link } from 'react-router-dom'
+import { BackgroundLight } from '../../components/ui/sections/Backgroundlight'
 
 
 
@@ -32,7 +33,7 @@ export function CreatePage() {
   const isReview = step === REVIEW_STEP
 
   return (
-    <><div className="min-h-screen white">
+    <><div className="min-h-screen white relative z-10">
 
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6  border-b border-white/6 bg-[#09090f]/85 backdrop-blur-lg">
@@ -153,6 +154,7 @@ export function CreatePage() {
         multiple
         className="hidden"
         onChange={handleFileChange} />
-    </div><PS3Background /></>
+    </div>
+    <BackgroundLight /> </>
   )
 }
