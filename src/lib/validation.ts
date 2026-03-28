@@ -47,7 +47,7 @@ export const step5Schema = z.object({
     .optional()
     .refine(
       (url) => !url || url.startsWith('https://open.spotify.com/track/'),
-      'Use um link no formato: open.spotify.com/track/...'
+      'Use um link no formato: https://open.spotify.com/track/...'
     ),
 })
 
