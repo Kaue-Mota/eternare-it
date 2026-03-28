@@ -26,7 +26,7 @@ const upload = multer({
 const createMemorySchema = z.object({
   title: z.string().min(1).max(60),
   date: z.string().min(1),
-  text: z.string().min(1).max(600),
+  text: z.string().min(1).max(1200),
   bgColor: z.string().min(1),
   spotifyUrl: z.string().optional(),
 })
