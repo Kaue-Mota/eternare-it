@@ -13,11 +13,13 @@ const upload = multer({
   storage,
   limits: { fileSize: 10 * 1024 * 1024 }, // 10MB por foto
   fileFilter: (_, file, cb) => {
-    const allowed = ['image/jpeg', 'image/png', 'image/webp']
-    allowed.includes(file.mimetype)
-      ? cb(null, true)
-      : cb(new Error('Formato não suportado. Use JPG, PNG ou WEBP.'))
-  },
+  const allowed = ['image/jpeg', 'image/png', 'image/webp']
+  if (allowed.includes(file.mimetype)) {
+    cb(null, true)
+  } else {
+    cb(new Error(`Formato não suportado: ${file.mimetype}. Use JPG, PNG ou WEBP.`))
+  }
+},
 })
 
 // ── schema de validação do body ───────────────────────────────────────────────
@@ -65,7 +67,14 @@ memoryRouter.get('/:slug', async (req, res) => {
 // O webhook do Stripe muda paid = true após pagamento confirmado
 memoryRouter.post(
   '/',
-  upload.array('photos', 5),
+  (req, res, next) => {
+    upload.array('photos', 5)(req, res, (err) => {
+      if (err) {
+        return res.status(400).json({ error: err.message })
+      }
+      next()
+    })
+  },
   async (req, res) => {
     try {
       // valida os campos de texto
