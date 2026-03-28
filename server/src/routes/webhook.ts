@@ -61,6 +61,8 @@ webhookRouter.post("/", async (req, res) => {
         data: { paid: true },
       });
 
+      console.log(`✅ Memória ativada: ${memory.slug}`);
+
       // envia o email se tiver o email do cliente
 
       if (customerEmail) {
