@@ -53,7 +53,7 @@ export function HowItWorks() {
       <div className="max-w-5xl mx-auto">
 
         {/* Header */}
-        <div className="mb-16">
+        <div className="mb-16 lg:flex lg:flex-col lg:items-center lg:text-center lg:gap-4">
           <p className="text-[11px] tracking-[0.18em] uppercase text-[#7c6aff] mb-4">
             Como funciona
           </p>
@@ -75,7 +75,7 @@ export function HowItWorks() {
               key={step.number}
               className="flex flex-col gap-5 px-6 py-8"
               style={{
-                borderLeft: i > 0 ? '1px solid rgba(255,255,255,0.06)' : 'none',
+                borderLeft: i >= 0 ? '1px solid rgba(255,255,255,0.06)' : 'none',
               }}
             >
               {/* Número */}
@@ -83,7 +83,7 @@ export function HowItWorks() {
                 className="text-5xl font-light leading-none"
                 style={{
                   fontFamily: 'Georgia, serif',
-                  color: 'rgba(124,106,255,0.18)',
+                  color: 'rgba(124,106,255,1)',
                   letterSpacing: '-0.02em',
                 }}
               >

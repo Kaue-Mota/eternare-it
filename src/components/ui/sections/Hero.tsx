@@ -1,27 +1,16 @@
-// src/components/ui/sections/Hero.tsx
 import { useNavigate } from "react-router-dom";
 
 export default function Hero() {
   const navigate = useNavigate();
 
   return (
-    <section className="min-h-screen flex items-center pt-40 pb-12 px-20 relative overflow-hidden bg-[#0a0a1f]">
-      {/* glow roxo */}
-      <div className="absolute -top-40 -left-40 h-100 w-100 rounded-full bg-purple-600/30 blur-[120px] animate-pulse" />
-
-      {/* glow azul */}
-      <div className="absolute top-40 -right-25 h-100 w-100 rounded-full bg-blue-500/30 blur-[120px]" />
-
-      {/* glow azul */}
-      <div className="absolute top-50 right-250 h-100 w-100 rounded-full bg-blue-500/30 blur-[120px] animate-pulse" />
-
-      {/* conteúdo */}
-      <div className="relative z-10">{/* sua landing */}</div>
-      <div className="max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-50 items-center">
-        {/* Coluna esquerda — texto */}
-        <div className="flex flex-col gap-6 mr-10">
+    <section className="relative h-full overflow-hidden  px-6 pt-32 pb-12 md:px-10 lg:px-16">
+      
+      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-8rem)] w-full max-w-7xl grid-cols-1 items-center gap-14 lg:grid-cols-2 lg:gap-20">
+        {/* Coluna esquerda */}
+        <div className="flex max-w-xl flex-col gap-6">
           <div
-            className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[12px] self-start"
+            className="inline-flex items-center gap-2 self-start rounded-full px-4 py-1.5 text-[12px]"
             style={{
               background: "rgba(124,106,255,0.1)",
               border: "1px solid rgba(124,106,255,0.25)",
@@ -29,14 +18,14 @@ export default function Hero() {
             }}
           >
             <span
-              className="w-1.5 h-1.5 rounded-full"
+              className="h-1.5 w-1.5 rounded-full"
               style={{ background: "#b06fff", animation: "pulse 2s infinite" }}
             />
             Eternize o que importa
           </div>
 
           <h1
-            className="text-4xl md:text-5xl lg:text-6xl font-light leading-tight"
+            className="text-5xl leading-[1.05] font-light md:text-6xl lg:text-7xl"
             style={{ fontFamily: "Georgia, serif", color: "#f0eef8" }}
           >
             Transforme memórias em{" "}
@@ -44,17 +33,17 @@ export default function Hero() {
           </h1>
 
           <p
-            className="text-[16px] leading-relaxed max-w-md"
+            className="max-w-lg text-base leading-relaxed md:text-lg"
             style={{ color: "rgba(240,238,248,0.55)" }}
           >
             Crie uma página única com fotos, música e palavras que vão durar
             para sempre — compartilhe com um link ou QR Code.
           </p>
 
-          <div className="flex gap-3 flex-wrap">
+          <div className="flex flex-wrap gap-3">
             <button
               onClick={() => navigate("/criar")}
-              className="px-6 py-3.5 rounded-xl text-[20px] font-medium text-white transition-all hover:opacity-88 hover:-translate-y-0.5"
+              className="rounded-xl px-6 py-3.5 text-lg font-medium text-white transition-all hover:-translate-y-0.5 hover:opacity-90"
               style={{
                 background: "linear-gradient(135deg, #7c6aff, #b06fff)",
                 boxShadow: "0 0 32px rgba(124,106,255,0.3)",
@@ -65,31 +54,31 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="mb-20">
+        {/* Coluna direita */}
+        <div className="mx-auto flex w-full max-w-xl justify-center lg:justify-end">
           <img
             src="/images/home/hero/mockuphero.webp"
-            alt="Ilustração de uma pessoa criando uma página de memória em um laptop, cercada por fotos, música e palavras flutuantes"
-            className="w-full rounded-xl shadow-lg"
+            alt="Prévia de páginas digitais personalizadas de memória"
+            className="w-full max-w-115 animate- drop-shadow-[0_20px_60px_rgba(0,0,0,0.45)]"
           />
         </div>
+      </div>
 
-        {/* Scroll hint */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce ">
-          <p
-            className="text-[10px] tracking-widest uppercase"
-            style={{ color: "rgba(240,238,248,0.50)" }}
-          >
-            Rolar
-          </p>
-          <div
-            className="w-px h-10"
-            style={{
-              background:
-                "linear-gradient(to bottom, rgba(124,106,255,0.6), transparent)",
-              animation: "pulse 2s ease-in-out infinite",
-            }}
-          />
-        </div>
+      {/* Scroll hint */}
+      <div className="absolute bottom-15 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 animate-bounce">
+        <p
+          className="text-[10px] uppercase tracking-widest"
+          style={{ color: "rgba(240,238,248,0.50)" }}
+        >
+          Rolar
+        </p>
+        <div
+          className="h-10 w-px"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(124,106,255,0.6), transparent)",
+          }}
+        />
       </div>
     </section>
   );

@@ -7,6 +7,8 @@ import { Reviews } from "../../components/ui/sections/Reviews.tsx";
 import { Cta } from "../../components/ui/CtaFooter/index.tsx";
 import Hero from "../../components/ui/sections/Hero.tsx";
 import { HowItWorks } from "../../components/ui/sections/Howitworks.tsx";
+import { BackgroundLight } from "../../components/ui/sections/Backgroundlight.tsx";
+
 
 
 
@@ -21,6 +23,7 @@ export default function HomePage() {
             <Examples />
             <Reviews />
             <Cta />
+            <BackgroundLight  />
             
         </>
     )
