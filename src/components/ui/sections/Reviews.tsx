@@ -49,7 +49,7 @@ function Stars({ count }: { count: number }) {
 
 export function Reviews() {
   return (
-    <section className=" relative pb-24 min-h-screen overflow-hidden " >
+    <section className=" z-10 relative pb-24 min-h-screen overflow-hidden " >
     
 
   {/* conteúdo */}

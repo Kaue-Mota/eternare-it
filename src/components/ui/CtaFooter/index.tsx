@@ -5,7 +5,7 @@ export function Cta() {
   const navigate = useNavigate()
 
   return (
-    <section className="bg-[rgba(5,6,18,0.88)]  backdrop-blur-lg py-32 relative overflow-hidden">
+    <section className="bg-[rgba(5,6,18,0.88)]  backdrop-blur-lg py-32 z-10 relative overflow-hidden">
       {/* Glow de fundo */}
       <div
         className="absolute inset-0 pointer-events-none"

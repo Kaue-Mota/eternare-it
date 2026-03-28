@@ -90,7 +90,7 @@ export function Examples() {
   const next = () => setActive(i => (i === EXAMPLES.length - 1 ? 0 : i + 1))
 
   return (
-    <section className=" backdrop-blur-lg py-24 border-b-1 border-white/10">
+    <section className=" backdrop-blur-lg py-24 border-b border-white/10 z-10 relative">
       <div className="max-w-4xl mx-auto px-6">
 
         {/* Header */}

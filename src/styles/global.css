@@ -13,6 +13,9 @@ body {
   font-family: var(--font-ui);
 }
 
+html, body {
+  background-color: #070712;
+}
 
 .font-ui {
   font-family: var(--font-ui);

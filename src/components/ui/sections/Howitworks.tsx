@@ -49,7 +49,7 @@ const STEPS = [
 
 export function HowItWorks() {
   return (
-    <section className="py-24 px-6 bg-[rgba(5,6,18,0.88)] backdrop-blur-lg">
+    <section className="py-24 px-6 bg-[rgba(5,6,18,0.88)] backdrop-blur-lg z-10 relative">
       <div className="max-w-5xl mx-auto">
 
         {/* Header */}
