@@ -56,7 +56,7 @@ export async function sendMemoryEmail({
               <table cellpadding="0" cellspacing="0">
                 <tr>
                   <td style="background:linear-gradient(135deg,#7c6aff,#b06fff);border-radius:10px;padding:10px 16px;">
-                    <span style="color:#fff;font-size:15px;font-weight:600;letter-spacing:0.02em;">eternare.it</span>
+                    <span style="color:#fff;font-size:15px;font-weight:600;letter-spacing:0.02em;">eternareit.com</span>
                   </td>
                 </tr>
               </table>
