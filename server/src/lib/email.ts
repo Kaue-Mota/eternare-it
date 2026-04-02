@@ -90,15 +90,13 @@ export async function sendMemoryEmail({
               <table width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td align="center" style="padding-bottom:8px;">
-                    <div style="background:#fff;border-radius:16px;padding:16px;display:inline-block;">
-                      <img src="cid:qrcode" width="160" height="160" alt="QR Code da memória" style="display:block;" />
-                    </div>
+                   
                   </td>
                 </tr>
                 <tr>
                   <td align="center" style="padding-bottom:24px;">
-                    <p style="color:rgba(240,238,248,0.3);font-size:11px;margin:8px 0 0;letter-spacing:0.08em;text-transform:uppercase;">
-                      QR Code também em anexo para download
+                    <p style="color:rgba(255,0,0,1);font-size:16px;margin:8px 0 0;letter-spacing:0.08em;text-transform:uppercase;">
+                      QR Code em anexo para download
                     </p>
                   </td>
                 </tr>
