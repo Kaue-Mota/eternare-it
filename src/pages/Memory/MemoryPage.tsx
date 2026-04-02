@@ -93,7 +93,7 @@ function SpotifyEmbed({ url }: { url: string }) {
   if (!match) return null
   return (
     <iframe
-      src={`https://open.spotify.com/embed/track/${match[1]}?utm_source=generator&theme=0`}
+      src={`https://open.spotify.com/embed/track/${match[1]}?autoplay=1&utm_source=generator&theme=0`}
       width="100%"
       height="80"
       frameBorder="0"
