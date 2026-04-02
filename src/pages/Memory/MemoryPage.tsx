@@ -111,7 +111,7 @@ function SpotifyEmbed({ url }: { url: string }) {
       height="80"
       frameBorder="0"
       allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      loading="lazy"
+     
       className="rounded-xl block"
     />
   );
