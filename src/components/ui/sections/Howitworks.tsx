@@ -32,7 +32,7 @@ const STEPS = [
       </svg>
     ),
     title: 'Finalize o pagamento',
-    text: 'Pagamento seguro via Stripe. Rápido e sem complicação.',
+    text: 'Pagamento seguro via Stripe. Rápido e sem complicação, insira um email válido para receber sua memória.',
   },
   {
     number: '04',

@@ -44,6 +44,7 @@ export function StepReview({ data, onEdit, onBack }: Props) {
     { label: "Título", value: data.title || "—", step: 2 },
     { label: "Data", value: formatDate(data.date), step: 2 },
     { label: "Tempo eternizado", value: calcDays(data.date), step: 2 },
+    { label: 'Emoji', value: data.emoji, step: 5 },
     {
       label: "Texto",
       value: data.text
@@ -86,6 +87,7 @@ export function StepReview({ data, onEdit, onBack }: Props) {
     formData.append('date', data.date)
     formData.append('text', data.text)
     formData.append('bgColor', data.bgColor)
+    formData.append('emoji', data.emoji || '❤️')
     if (data.spotifyUrl) formData.append('spotifyUrl', data.spotifyUrl)
 
     console.log('Enviando para /api/memory...')
