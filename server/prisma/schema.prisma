@@ -10,21 +10,21 @@ datasource db {
 }
 
 model Memory {
-  id         String   @id @default(cuid())
-  slug       String   @unique
-  title      String
-  date       DateTime
-  text       String
-  bgColor    String
-  spotifyUrl String?
-  photos     String[] // array de URLs (S3 ou Cloudflare R2)
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  title           String
+  date            DateTime
+  text            String
+  bgColor         String
+  spotifyUrl      String?
+  photos          String[]
+  emoji           String   @default("❤️")  // ← adicione essa linha
 
-  // controle de pagamento
-  paid       Boolean  @default(false)
-  stripeSessionId String? @unique
+  paid            Boolean  @default(false)
+  stripeSessionId String?  @unique
 
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
   @@map("memories")
 }

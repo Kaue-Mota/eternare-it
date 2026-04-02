@@ -4,8 +4,6 @@ import { BG_COLORS } from '../types/memory'
 
 const validHexColors = BG_COLORS.map((c) => c.hex)
 
-// ── schemas por step ─────────────────────────────────────────────────────────
-
 export const step1Schema = z.object({
   photos: z
     .array(z.instanceof(File))
@@ -42,26 +40,27 @@ export const step4Schema = z.object({
 })
 
 export const step5Schema = z.object({
+  emoji: z.string().min(1, 'Selecione um emoji'),
+})
+
+export const step6Schema = z.object({
   spotifyUrl: z
     .string()
     .optional()
     .refine(
       (url) => !url || url.startsWith('https://open.spotify.com/track/'),
-      'Use um link no formato: https://open.spotify.com/track/...'
+      'Use um link no formato: open.spotify.com/track/...'
     ),
 })
-
-// ── schema completo (usado na API antes de salvar no banco) ──────────────────
 
 export const memorySchema = step1Schema
   .merge(step2Schema)
   .merge(step3Schema)
   .merge(step4Schema)
   .merge(step5Schema)
+  .merge(step6Schema)
 
 export type MemorySchema = z.infer<typeof memorySchema>
-
-// ── mapa de schema por step ───────────────────────────────────────────────────
 
 export const stepSchemas = {
   1: step1Schema,
@@ -69,11 +68,10 @@ export const stepSchemas = {
   3: step3Schema,
   4: step4Schema,
   5: step5Schema,
+  6: step6Schema,
 } as const
 
 export type StepErrors = Partial<Record<string, string>>
-
-// ── helper: valida um step e retorna erros formatados ────────────────────────
 
 export function validateStep(
   step: keyof typeof stepSchemas,

@@ -7,6 +7,7 @@ export interface MemoryFormData {
   date: string
   text: string
   bgColor: string
+  emoji: string  
   spotifyUrl: string
 }
 
@@ -31,10 +32,11 @@ export const INITIAL_FORM_DATA: MemoryFormData = {
   date: '',
   text: '',
   bgColor: BG_COLORS[0].hex,
+  emoji: '❤️',
   spotifyUrl: '',
 }
 
 // 1-5 são os steps do formulário, 6 é a tela de revisão
-export type StepId = 1 | 2 | 3 | 4 | 5 | 6
-export const TOTAL_STEPS = 5
-export const REVIEW_STEP = 6
+export type StepId = 1 | 2 | 3 | 4 | 5 | 6 | 7
+export const TOTAL_STEPS = 6
+export const REVIEW_STEP = 7

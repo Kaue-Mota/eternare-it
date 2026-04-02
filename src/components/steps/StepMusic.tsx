@@ -17,7 +17,7 @@ export function StepMusic({ data, errors, onChange, onNext, onBack }: Props) {
   return (
     <div className="flex flex-col gap-5">
       <div>
-        <p className="text-[10px] tracking-[0.14em] uppercase text-[#b06fff] mb-1">Etapa 5</p>
+        <p className="text-[10px] tracking-[0.14em] uppercase text-[#b06fff] mb-1">Etapa 6</p>
         <h2 className="text-[19px] font-medium text-white">Adicione uma música</h2>
         <p className="text-[12px] text-white/50 mt-1">
           Cole um link do Spotify — aparece tocando dentro da página
