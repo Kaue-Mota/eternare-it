@@ -449,86 +449,111 @@ export default function MemoryPage() {
 
           <div className="px-5">
             <div
-              className="mt-5 rounded-xl px-4 py-3 text-center text-[13px] font-semibold tracking-wide"
+              className="mt-4 rounded-2xl p-5"
               style={{
-                background: "rgba(124,106,255,0.1)",
-                border: "1px solid rgba(124,106,255,0.2)",
-                color: "#b06fff",
+                background: "rgba(0,0,0,0.25)",
+                backdropFilter: "blur(12px)",
+                border: "1px solid rgba(255,255,255,0.07)",
               }}
             >
-              <LiveCounter date={memory.date} />
-            </div>
-
-            <div className="flex items-start gap-2.5 mt-6">
-              <div className="w-[3px] self-stretch rounded-sm flex-shrink-0 bg-red-600" />
-              <h1
-                className="text-[clamp(22px,6vw,32px)] font-extrabold uppercase tracking-widest text-white leading-tight break-words m-0"
+              <div
+                className="mt-5 rounded-xl px-4 py-3 text-center text-[13px] font-semibold tracking-wide"
                 style={{
-                  fontFamily:
-                    memory.fontStyle === "serifada"
-                      ? "Georgia, serif"
-                      : memory.fontStyle === "manuscrita"
-                        ? "Caveat, cursive"
-                        : "DM Sans, sans-serif",
+                  background: "rgba(124,106,255,0.1)",
+                  border: "1px solid rgba(124,106,255,0.2)",
+                  color: "#b06fff",
                 }}
               >
-                {memory.title}
-              </h1>
-            </div>
+                <LiveCounter date={memory.date} />
+              </div>
 
-            <p
-              className="mt-2 text-[11px] tracking-widest uppercase"
-              style={{ color: "rgba(240,238,248,0.35)" }}
-            >
-              {formattedDate}
-            </p>
-
-            <div
-              className="mt-5 h-px"
-              style={{ background: "rgba(255,255,255,0.07)" }}
-            />
-
-            <p
-              className="mt-5 text-[15px] leading-relaxed whitespace-pre-wrap"
-              style={{
-                color: "rgba(240,238,248,0.75)",
-                fontFamily:
-                  memory.textFont === "serifada"
-                    ? "Georgia, serif"
-                    : memory.textFont === "manuscrita"
-                      ? "Caveat, cursive"
-                      : "DM Sans, sans-serif",
-                overflowWrap: "break-word",
-                wordBreak: "break-word",
-              }}
-            >
-              {memory.text}
-            </p>
-
-            <div
-              className="mt-12 pt-4 flex items-center justify-between"
-              style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
-            >
-              <div className="flex items-center gap-1.5">
-                <div
-                  className="w-[22px] h-[22px] rounded-md flex items-center justify-center flex-shrink-0"
+              <div className="flex items-start gap-2.5 mt-6">
+                <div className="w-[3px] self-stretch rounded-sm flex-shrink-0 bg-red-600" />
+                <h1
+                  className="text-[clamp(22px,6vw,32px)] font-extrabold uppercase tracking-widest text-white leading-tight break-words m-0"
                   style={{
-                    background: "linear-gradient(135deg, #7c6aff, #b06fff)",
+                    fontFamily:
+                      memory.fontStyle === "serifada"
+                        ? "Georgia, serif"
+                        : memory.fontStyle === "manuscrita"
+                          ? "Caveat, cursive"
+                          : "DM Sans, sans-serif",
+                    textShadow: "0 2px 12px rgba(0,0,0,0.5)",
                   }}
-                ></div>
-                <span
-                  className="text-[12px] font-medium"
-                  style={{ color: "rgba(255,255,255,0.25)" }}
                 >
-                  eternareit.com
+                  {memory.title}
+                </h1>
+              </div>
+
+              <p
+                className="mt-2 text-[11px] tracking-widest uppercase"
+                style={{ color: "rgba(240,238,248,0.35)" }}
+              >
+                {formattedDate}
+              </p>
+
+              <div
+                className="mt-5 h-px"
+                style={{ background: "rgba(255,255,255,0.07)" }}
+              />
+
+              <p
+                className="mt-5 text-[15px] leading-relaxed whitespace-pre-wrap"
+                style={{
+                  color: "rgba(240,238,248,0.85)",
+                  fontFamily:
+                    memory.textFont === "serifada"
+                      ? "Georgia, serif"
+                      : memory.textFont === "manuscrita"
+                        ? "Caveat, cursive"
+                        : "DM Sans, sans-serif",
+                  overflowWrap: "break-word",
+                  wordBreak: "break-word",
+                  textShadow: "0 1px 8px rgba(0,0,0,0.4)",
+                }}
+              >
+                {memory.text}
+              </p>
+
+              {/* rodapé dentro da caixa */}
+              <div
+                className="mt-8 pt-4 flex items-center justify-between"
+                style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
+              >
+                <div className="flex items-center gap-1.5">
+                  <div
+                    className="w-[22px] h-[22px] rounded-md flex items-center justify-center flex-shrink-0"
+                    style={{
+                      background: "linear-gradient(135deg, #7c6aff, #b06fff)",
+                    }}
+                  >
+                    <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
+                      <path
+                        d="M8 2C8 2 4 5 4 8.5C4 10.985 5.79 13 8 13C10.21 13 12 10.985 12 8.5C12 5 8 2 8 2Z"
+                        fill="white"
+                        fillOpacity="0.9"
+                      />
+                      <path
+                        d="M8 6C8 6 6 7.5 6 9C6 10.105 6.895 11 8 11C9.105 11 10 10.105 10 9C10 7.5 8 6 8 6Z"
+                        fill="white"
+                        fillOpacity="0.4"
+                      />
+                    </svg>
+                  </div>
+                  <span
+                    className="text-[12px] font-medium"
+                    style={{ color: "rgba(255,255,255,0.25)" }}
+                  >
+                    eternareit.com
+                  </span>
+                </div>
+                <span
+                  className="text-[11px]"
+                  style={{ color: "rgba(255,255,255,0.15)" }}
+                >
+                  /m/{memory.slug}
                 </span>
               </div>
-              <span
-                className="text-[11px]"
-                style={{ color: "rgba(255,255,255,0.15)" }}
-              >
-                /m/{memory.slug}
-              </span>
             </div>
           </div>
         </div>
