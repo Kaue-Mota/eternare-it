@@ -422,7 +422,7 @@ export default function MemoryPage() {
       }}
     >
       {/* Animação de fundo — aparece sempre */}
-      <BgAnimation type={memory.bgAnimation} bgColor={memory.bgColor} />
+      <BgAnimation type={memory.bgAnimation} />
       {!revealed && (
         <EntryButton
           emoji={emoji}
