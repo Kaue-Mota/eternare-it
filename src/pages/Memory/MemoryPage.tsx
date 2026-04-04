@@ -11,6 +11,7 @@ interface MemoryData {
   spotifyUrl?: string;
   photos: string[];
   emoji: string;
+  fontStyle: string;
 }
 
 function calcCounter(dateStr: string): string {
@@ -111,7 +112,6 @@ function SpotifyEmbed({ url }: { url: string }) {
       height="80"
       frameBorder="0"
       allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-     
       className="rounded-xl block"
     />
   );
@@ -375,7 +375,17 @@ export default function MemoryPage() {
 
             <div className="flex items-start gap-2.5 mt-6">
               <div className="w-[3px] self-stretch rounded-sm flex-shrink-0 bg-red-600" />
-              <h1 className="text-[clamp(22px,6vw,32px)] font-extrabold uppercase tracking-widest text-white leading-tight break-words m-0">
+              <h1
+                style={{
+                  fontFamily:
+                    memory.fontStyle === "serifada"
+                      ? "Georgia, serif"
+                      : memory.fontStyle === "manuscrita"
+                        ? "Caveat, cursive"
+                        : "DM Sans, sans-serif",
+                }}
+                className="text-[clamp(22px,6vw,32px)] font-extrabold uppercase tracking-widest text-white leading-tight break-words m-0"
+              >
                 {memory.title}
               </h1>
             </div>
