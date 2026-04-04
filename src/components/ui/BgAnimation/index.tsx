@@ -3,10 +3,9 @@
 
 interface Props {
   type: string
-  bgColor: string
 }
 
-export function BgAnimation({ type, bgColor }: Props) {
+export function BgAnimation({ type }: Props) {
   if (!type || type === 'none') return null
 
   return (
