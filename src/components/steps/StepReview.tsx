@@ -89,6 +89,7 @@ export function StepReview({ data, onEdit, onBack }: Props) {
     formData.append('bgColor', data.bgColor)
     formData.append('emoji', data.emoji || '❤️')
     formData.append('fontStyle', data.fontStyle || 'moderna')
+    formData.append('textFont', data.textFont || 'moderna')
     if (data.spotifyUrl) formData.append('spotifyUrl', data.spotifyUrl)
 
     console.log('Enviando para /api/memory...')
