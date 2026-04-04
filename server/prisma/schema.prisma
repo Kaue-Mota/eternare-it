@@ -22,6 +22,7 @@ model Memory {
   fontStyle  String  @default("moderna")
   textFont   String  @default("moderna")
   frameStyle String @default("polaroid")
+  bgAnimation String @default("none")
 
   paid            Boolean  @default(false)
   stripeSessionId String?  @unique
