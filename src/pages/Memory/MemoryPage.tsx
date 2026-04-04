@@ -1,6 +1,7 @@
 // src/pages/Memory/MemoryPage.tsx
 import { useEffect, useRef, useState } from "react";
 import { useParams, Navigate } from "react-router-dom";
+import { BgAnimation } from "../../components/ui/BgAnimation";
 
 interface MemoryData {
   slug: string;
@@ -14,6 +15,7 @@ interface MemoryData {
   fontStyle: string;
   textFont: string;
   frameStyle: string;
+  bgAnimation: string;
 }
 
 function calcCounter(dateStr: string): string {
@@ -419,6 +421,8 @@ export default function MemoryPage() {
         position: "relative",
       }}
     >
+      {/* Animação de fundo — aparece sempre */}
+      <BgAnimation type={memory.bgAnimation} bgColor={memory.bgColor} />
       {!revealed && (
         <EntryButton
           emoji={emoji}
@@ -511,9 +515,7 @@ export default function MemoryPage() {
                   style={{
                     background: "linear-gradient(135deg, #7c6aff, #b06fff)",
                   }}
-                >
-                  
-                </div>
+                ></div>
                 <span
                   className="text-[12px] font-medium"
                   style={{ color: "rgba(255,255,255,0.25)" }}

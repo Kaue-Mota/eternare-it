@@ -15,26 +15,19 @@ export const FONT_OPTIONS = [
 ]
 
 export const FRAME_OPTIONS = [
-  {
-    id: 'polaroid',
-    label: 'Polaroid',
-    description: 'Moldura branca clássica',
-  },
-  {
-    id: 'vintage',
-    label: 'Vintage',
-    description: 'Tom sépia envelhecido',
-  },
-  {
-    id: 'minimalista',
-    label: 'Minimalista',
-    description: 'Sem moldura, só a foto',
-  },
-  {
-    id: 'neon',
-    label: 'Neon',
-    description: 'Borda com glow animado',
-  },
+  { id: 'polaroid', label: 'Polaroid', description: 'Moldura branca clássica' },
+  { id: 'vintage', label: 'Vintage', description: 'Tom sépia envelhecido' },
+  { id: 'minimalista', label: 'Minimalista', description: 'Sem moldura, só a foto' },
+  { id: 'neon', label: 'Neon', description: 'Borda com glow animado' },
+]
+
+export const ANIMATION_OPTIONS = [
+  { id: 'none', label: 'Nenhum', icon: '◯' },
+  { id: 'stars', label: 'Estrelas', icon: '⭐' },
+  { id: 'sparkles', label: 'Brilhos', icon: '✨' },
+  { id: 'waves', label: 'Ondas', icon: '🌊' },
+  { id: 'candles', label: 'Velas', icon: '🕯️' },
+  { id: 'flames', label: 'Chamas', icon: '🔥' },
 ]
 
 function FontSelector({ label, value, onChange, preview }: {
@@ -72,13 +65,14 @@ export function StepVisual({ data, onChange, onNext, onBack }: Props) {
   const currentFont = data.fontStyle ?? 'moderna'
   const currentTextFont = data.textFont ?? 'moderna'
   const currentFrame = data.frameStyle ?? 'polaroid'
+  const currentAnimation = data.bgAnimation ?? 'none'
 
   return (
     <div className="flex flex-col gap-6">
       <div>
         <p className="text-[10px] tracking-[0.14em] uppercase text-[#b06fff] mb-1">Etapa 4</p>
         <h2 className="text-[19px] font-medium text-white">Escolha o visual</h2>
-        <p className="text-[12px] text-white/50 mt-1">Cor, fontes e moldura da memória</p>
+        <p className="text-[12px] text-white/50 mt-1">Cor, animação, fontes e moldura</p>
       </div>
 
       {/* Cor de fundo */}
@@ -103,6 +97,32 @@ export function StepVisual({ data, onChange, onNext, onBack }: Props) {
                 <span className="text-[9px] transition-colors"
                   style={{ color: isSelected ? '#b06fff' : 'rgba(255,255,255,0.3)' }}>
                   {color.label}
+                </span>
+              </button>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* Animação de fundo */}
+      <div className="flex flex-col gap-2">
+        <span className="text-[11px] text-white/50 tracking-wide uppercase">Animação de fundo</span>
+        <div className="grid grid-cols-3 gap-2">
+          {ANIMATION_OPTIONS.map((anim) => {
+            const isSelected = currentAnimation === anim.id
+            return (
+              <button key={anim.id} type="button"
+                onClick={() => onChange('bgAnimation', anim.id)}
+                className="flex flex-col items-center gap-1.5 rounded-xl py-3 transition-all"
+                style={{
+                  background: isSelected ? 'rgba(124,106,255,0.12)' : 'rgba(255,255,255,0.03)',
+                  border: isSelected ? '1px solid rgba(124,106,255,0.4)' : '1px solid rgba(255,255,255,0.07)',
+                }}
+              >
+                <span style={{ fontSize: 22 }}>{anim.icon}</span>
+                <span className="text-[10px] font-medium"
+                  style={{ color: isSelected ? '#b06fff' : 'rgba(255,255,255,0.5)' }}>
+                  {anim.label}
                 </span>
               </button>
             )
@@ -143,25 +163,6 @@ export function StepVisual({ data, onChange, onNext, onBack }: Props) {
         onChange={(val) => onChange('fontStyle', val)} preview="EU TE AMO" />
       <FontSelector label="Fonte do texto" value={currentTextFont}
         onChange={(val) => onChange('textFont', val)} preview="Cada momento..." />
-
-      {/* Preview */}
-      <div className="rounded-xl border border-white/8 p-4 flex flex-col gap-2 transition-colors duration-300"
-        style={{ background: data.bgColor }}>
-        <div className="flex items-center gap-2">
-          <div className="w-1.5 h-6 rounded-sm bg-red-600 flex-shrink-0" />
-          <p className="text-[15px] uppercase tracking-widest text-white"
-            style={FONT_OPTIONS.find(f => f.id === currentFont)?.style}>
-            Título da memória
-          </p>
-        </div>
-        <p className="text-[13px] leading-relaxed mt-1"
-          style={{ color: 'rgba(240,238,248,0.7)', ...FONT_OPTIONS.find(f => f.id === currentTextFont)?.style, fontWeight: 400 }}>
-          Aqui aparece o texto com a fonte escolhida.
-        </p>
-        <p className="text-[10px] mt-1" style={{ color: 'rgba(255,255,255,0.25)' }}>
-          Moldura: <span style={{ color: '#b06fff' }}>{FRAME_OPTIONS.find(f => f.id === currentFrame)?.label}</span>
-        </p>
-      </div>
 
       <div className="flex gap-2">
         <button type="button" onClick={onBack}

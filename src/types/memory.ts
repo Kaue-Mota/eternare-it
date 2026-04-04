@@ -12,6 +12,7 @@ export interface MemoryFormData {
   textFont: string  
   frameStyle: string
   spotifyUrl: string
+   bgAnimation: string 
 }
 
 export interface BgColorOption {
@@ -40,6 +41,7 @@ export const INITIAL_FORM_DATA: MemoryFormData = {
   textFont: 'moderna',
   frameStyle: 'polaroid',
   spotifyUrl: '',
+  bgAnimation: 'none',
 }
 
 // 1-5 são os steps do formulário, 6 é a tela de revisão
