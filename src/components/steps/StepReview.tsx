@@ -44,7 +44,7 @@ export function StepReview({ data, onEdit, onBack }: Props) {
     { label: "Título", value: data.title || "—", step: 2 },
     { label: "Data", value: formatDate(data.date), step: 2 },
     { label: "Tempo eternizado", value: calcDays(data.date), step: 2 },
-    { label: 'Emoji', value: data.emoji, step: 5 },
+    { label: "Emoji", value: data.emoji, step: 5 },
     {
       label: "Texto",
       value: data.text
@@ -68,71 +68,79 @@ export function StepReview({ data, onEdit, onBack }: Props) {
     {
       label: "Música",
       value: data.spotifyUrl ? "Adicionada" : "Não adicionada",
-      step: 5,
+      step: 6,
     },
   ];
 
   async function handleCheckout() {
-  setLoading(true)
-  setError(null)
+    setLoading(true);
+    setError(null);
 
-  try {
-    const formData = new FormData()
-    const photos = data.photos.filter(Boolean)
-    
-    console.log('Fotos:', photos.length)
-    
-    photos.forEach((file) => formData.append('photos', file))
-    formData.append('title', data.title)
-    formData.append('date', data.date)
-    formData.append('text', data.text)
-    formData.append('bgColor', data.bgColor)
-    formData.append('emoji', data.emoji || '❤️')
-    formData.append('fontStyle', data.fontStyle || 'moderna')
-    formData.append('textFont', data.textFont || 'moderna')
-    formData.append('frameStyle', data.frameStyle || 'polaroid')
-    formData.append('bgAnimation', data.bgAnimation || 'none')
-    formData.append('bgAnimation', data.bgAnimation || 'none')
-    if (data.spotifyUrl) formData.append('spotifyUrl', data.spotifyUrl)
+    try {
+      const formData = new FormData();
+      const photos = data.photos.filter(Boolean);
 
-    console.log('Enviando para /api/memory...')
+      console.log("Fotos:", photos.length);
 
-    const createRes = await fetch('/api/memory', {
-      method: 'POST',
-      body: formData,
-    })
+      photos.forEach((file) => formData.append("photos", file));
+      formData.append("title", data.title);
+      formData.append("date", data.date);
+      formData.append("text", data.text);
+      formData.append("bgColor", data.bgColor);
+      formData.append("emoji", data.emoji || "❤️");
+      formData.append("fontStyle", data.fontStyle || "moderna");
+      formData.append("textFont", data.textFont || "moderna");
+      formData.append("frameStyle", data.frameStyle || "polaroid");
+      formData.append("bgAnimation", data.bgAnimation || "none");
 
-    console.log('Status:', createRes.status)
-    
-    const createBody = await createRes.json()
-    console.log('Body:', createBody)
+      if (data.spotifyUrl) formData.append("spotifyUrl", data.spotifyUrl);
 
-    if (!createRes.ok) {
-      throw new Error(createBody.error || 'Erro ao salvar memória')
+      console.log("Enviando para /api/memory...");
+
+      const createRes = await fetch("/api/memory", {
+        method: "POST",
+        body: formData,
+      });
+
+      console.log("Status:", createRes.status);
+
+      const createBody = await createRes.json();
+      console.log("Body:", createBody);
+
+      if (!createRes.ok) {
+        const errorMsg =
+          typeof createBody.error === "string"
+            ? createBody.error
+            : JSON.stringify(createBody.error);
+        throw new Error(errorMsg || "Erro ao salvar memória");
+      }
+
+      const { slug } = createBody;
+
+      const checkoutRes = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug }),
+      });
+
+      const checkoutBody = await checkoutRes.json();
+      console.log("Checkout:", checkoutBody);
+
+      if (!checkoutRes.ok) {
+        throw new Error(checkoutBody.error || "Erro ao iniciar pagamento");
+      }
+
+      window.location.href = checkoutBody.url;
+    } catch (err) {
+      console.error("Erro completo:", err);
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Algo deu errado. Tente novamente.",
+      );
+      setLoading(false);
     }
-
-    const { slug } = createBody
-
-    const checkoutRes = await fetch('/api/checkout', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ slug }),
-    })
-
-    const checkoutBody = await checkoutRes.json()
-    console.log('Checkout:', checkoutBody)
-
-    if (!checkoutRes.ok) {
-      throw new Error(checkoutBody.error || 'Erro ao iniciar pagamento')
-    }
-
-    window.location.href = checkoutBody.url
-  } catch (err) {
-    console.error('Erro completo:', err)
-    setError(err instanceof Error ? err.message : 'Algo deu errado. Tente novamente.')
-    setLoading(false)
   }
-}
 
   return (
     <div className="flex flex-col gap-6">
