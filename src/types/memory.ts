@@ -10,7 +10,7 @@ export interface MemoryFormData {
   emoji: string
   fontStyle: string  
   textFont: string  
-  frameStyle: string,
+  frameStyle: string
   spotifyUrl: string
 }
 
