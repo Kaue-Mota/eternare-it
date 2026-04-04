@@ -20,6 +20,7 @@ model Memory {
   photos          String[]
   emoji           String   @default("❤️")  // ← adicione essa linha
   fontStyle  String  @default("moderna")
+  textFont   String  @default("moderna")
 
   paid            Boolean  @default(false)
   stripeSessionId String?  @unique

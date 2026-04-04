@@ -12,6 +12,7 @@ interface MemoryData {
   photos: string[];
   emoji: string;
   fontStyle: string;
+  textFont: string;
 }
 
 function calcCounter(dateStr: string): string {
@@ -404,7 +405,16 @@ export default function MemoryPage() {
 
             <p
               className="mt-5 text-[15px] leading-relaxed whitespace-pre-wrap"
-              style={{ color: "rgba(240,238,248,0.75)" }}
+             
+              style={{
+                color: "rgba(240,238,248,0.75)",
+                fontFamily:
+                  memory.textFont === "serifada"
+                    ? "Georgia, serif"
+                    : memory.textFont === "manuscrita"
+                      ? "Caveat, cursive"
+                      : "DM Sans, sans-serif",
+              }}
             >
               {memory.text}
             </p>
