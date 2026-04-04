@@ -1,4 +1,4 @@
-// src/components/MemoryPreview.tsx
+// src/components/ui/MemoryPreview/index.tsx
 import { useEffect, useRef, useState } from "react";
 import type { MemoryFormData } from "../../../types/memory";
 
@@ -10,34 +10,29 @@ function calcCounter(dateStr: string): string {
   if (!dateStr) return "defina a data para o contador";
   const diff = Date.now() - new Date(dateStr + "T00:00:00").getTime();
   if (diff < 0) return "data no futuro";
-
   const totalSec = Math.floor(diff / 1000);
   const sec = totalSec % 60;
   const min = Math.floor(totalSec / 60) % 60;
   const hr = Math.floor(totalSec / 3600) % 24;
   const days = Math.floor(totalSec / 86400) % 365;
   const years = Math.floor(totalSec / 31536000);
-
   const parts: string[] = [];
   if (years > 0) parts.push(`${years} ano${years > 1 ? "s" : ""}`);
   if (days > 0) parts.push(`${days} dia${days > 1 ? "s" : ""}`);
-  parts.push(`${hr} hora${hr !== 1 ? "s" : ""}`);
-  parts.push(`${min} minuto${min !== 1 ? "s" : ""}`);
-  parts.push(`${sec} segundo${sec !== 1 ? "s" : ""}`);
+  parts.push(`${hr}h ${min}m ${sec}s`);
   return parts.join(", ");
 }
 
-function extractSpotifyTrackId(url: string): string | null {
-  const match = url.match(/track\/([a-zA-Z0-9]+)/);
-  return match ? match[1] : null;
+function getFontFamily(style: string) {
+  if (style === "serifada") return "Georgia, serif";
+  if (style === "manuscrita") return "Caveat, cursive";
+  return "DM Sans, sans-serif";
 }
 
 export function MemoryPreview({ data }: Props) {
-  const { photosPreviews, title, date, text, bgColor, spotifyUrl } = data;
+  const { photosPreviews, title, date, text, bgColor, spotifyUrl, fontStyle, textFont, frameStyle, emoji } = data;
 
-  // ── contador ao vivo ──────────────────────────────────────────────────────
   const [counter, setCounter] = useState(() => calcCounter(date));
-
   useEffect(() => {
     setCounter(calcCounter(date));
     if (!date) return;
@@ -45,205 +40,183 @@ export function MemoryPreview({ data }: Props) {
     return () => clearInterval(id);
   }, [date]);
 
-  // ── carrossel automático a cada 5s ────────────────────────────────────────
   const photos = photosPreviews.filter(Boolean);
   const [slideIdx, setSlideIdx] = useState(0);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
-    if (photos.length < 2) {
-      setSlideIdx(0);
-      return;
-    }
-    intervalRef.current = setInterval(() => {
-      setSlideIdx((prev) => (prev + 1) % photos.length);
-    }, 5000);
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
+    setSlideIdx(0);
+    if (photos.length < 2) return;
+    intervalRef.current = setInterval(() => setSlideIdx((p) => (p + 1) % photos.length), 5000);
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
   }, [photos.length]);
 
-  // garante que o índice não fique fora do range se uma foto for removida
-  useEffect(() => {
-    if (slideIdx >= photos.length) setSlideIdx(0);
-  }, [photos.length, slideIdx]);
+  const spotifyMatch = spotifyUrl?.match(/track\/([a-zA-Z0-9]+)/);
+  const hasSpotify = Boolean(spotifyMatch);
+  const frame = frameStyle ?? "polaroid";
 
-  const trackId = extractSpotifyTrackId(spotifyUrl);
-  const hasSpotify = Boolean(trackId);
+  // drops de emoji fixos para o preview
+  const drops = useRef(
+    Array.from({ length: 10 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      delay: Math.random() * 3,
+      duration: 3 + Math.random() * 3,
+      size: 10 + Math.random() * 10,
+    }))
+  ).current;
+
+  const frameWrapStyle: React.CSSProperties =
+    frame === "polaroid" ? { background: "#fff", borderRadius: 12, padding: "8px 8px 28px", boxShadow: "0 4px 16px rgba(0,0,0,0.4)" } :
+    frame === "vintage" ? { background: "#f5e6c8", borderRadius: 6, padding: "7px 7px 24px", boxShadow: "0 3px 12px rgba(0,0,0,0.4)", filter: "sepia(0.3)" } :
+    frame === "minimalista" ? { borderRadius: 10, overflow: "hidden", boxShadow: "0 3px 12px rgba(0,0,0,0.3)" } :
+    frame === "neon" ? { borderRadius: 10, padding: 2, background: "linear-gradient(135deg, #7c6aff, #b06fff, #ff6aff)", boxShadow: "0 0 12px rgba(124,106,255,0.7)" } :
+    { background: "#fff", borderRadius: 12, padding: "8px 8px 28px" };
+
+  const frameInnerStyle: React.CSSProperties =
+    frame === "neon" ? { borderRadius: 9, overflow: "hidden" } :
+    frame === "minimalista" ? {} :
+    { borderRadius: 6, overflow: "hidden" };
 
   return (
-    <div className="flex flex-col  lg:my-0  items-center gap-3">
-      <span className="center text-[10px] tracking-widest uppercase text-white/30">
+    <div className="flex flex-col items-center gap-3">
+      <span className="text-[10px] tracking-widest uppercase text-white/30">
         Preview em tempo real
       </span>
 
-      {/* Moldura do celular */}
+      {/* Moldura do celular — largura maior */}
       <div
-        className="w-55 scale-150 lg:scale-200 h-100 my-30 rounded-[34px] border-2 border-white/10  flex flex-col  overflow-y-auto scroll-smooth no-scrollbar pt-5"
+        className="rounded-[30px] border-2 border-white/10 overflow-hidden flex flex-col relative"
         style={{
+          width: 360,
+          padding: 20,
           background: bgColor,
-          boxShadow:
-            "0 0 0 1px rgba(255,255,255,0.04), 0 20px 50px rgba(0,0,0,0.7)",
+          boxShadow: "0 0 0 1px rgba(255,255,255,0.04), 0 20px 50px rgba(0,0,0,0.7)",
         }}
       >
-        
-
-        {/* Spotify — dentro da moldura, no topo */}
-        {hasSpotify && (
-          <div className="pt-5 pb-2 px-3 flex flex-col gap-1 bg-black/35">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-[#1db954] flex items-center justify-center shrink-0">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="white">
-                  <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.622.622 0 01-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.622.622 0 11-.277-1.215c3.809-.87 7.077-.496 9.712 1.115a.623.623 0 01.207.857zm1.223-2.722a.78.78 0 01-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.78.78 0 01-.973-.519.781.781 0 01.52-.972c3.632-1.102 8.147-.568 11.233 1.329a.78.78 0 01.257 1.071zm.105-2.835C14.692 9.15 9.375 8.977 6.297 9.92a.935.935 0 11-.543-1.79c3.533-1.072 9.404-.865 13.115 1.338a.936.936 0 01-.955 1.599z" />
-                </svg>
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-[10px] font-medium text-white truncate">
-                  Música da memória
-                </p>
-                <p className="text-[9px] text-white/40">
-                  Spotify • tocando agora
-                </p>
-              </div>
-              <div className="w-5 h-5 rounded-full border border-white/20 flex items-center justify-center shrink-0">
-                <svg
-                  width="6"
-                  height="6"
-                  viewBox="0 0 10 10"
-                  fill="rgba(255,255,255,0.7)"
+        {/* Chuva de emojis no preview */}
+        {emoji && (
+          <>
+            <style>{`
+              @keyframes previewfall {
+                0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+                10% { opacity: 1; }
+                90% { opacity: 0.7; }
+                100% { transform: translateY(700px) rotate(360deg); opacity: 0; }
+              }
+            `}</style>
+            <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 1 }}>
+              {drops.map(drop => (
+                <div
+                  key={drop.id}
+                  className="absolute"
+                  style={{
+                    left: `${drop.x}%`,
+                    top: -20,
+                    fontSize: drop.size,
+                    animation: `previewfall ${drop.duration}s ${drop.delay}s linear infinite`,
+                  }}
                 >
-                  <polygon points="2,1 9,5 2,9" />
-                </svg>
-              </div>
+                  {emoji}
+                </div>
+              ))}
             </div>
-            {/* Barra de progresso animada */}
-            <SpotifyProgressBar />
+          </>
+        )}
+
+        {/* Spotify iframe real */}
+        {hasSpotify && spotifyMatch && (
+          <div style={{ position: "relative", zIndex: 2, flexShrink: 0 }}>
+            <div className="w-full h-20 ">
+              <iframe
+              className="w-full h-full rounded-lg scale-90 origin-center pointer-events-auto mt-5"
+                src={`https://open.spotify.com/embed/track/${spotifyMatch[1]}?utm_source=generator&theme=0`}
+               
+                
+                frameBorder="0"
+                scrolling="no"
+                allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                style={{ border: "none"}}
+              />
+            </div>
           </div>
         )}
 
-        {/* Carrossel de fotos */}
-        <div className="bg-white rounded-2xl mx-3 my-4 p-3 pb-10 shadow-2xl">
-          <div className="relative rounded-md w-full h-49 overflow-hidden shrink-0">
-            {photos.length > 0 ? (
-              <>
-                <div
-                  className="flex h-full transition-transform duration-500 ease-in-out"
-                  style={{ transform: `translateX(-${slideIdx * 100}%)` }}
-                >
-                  {photos.map((src, i) => (
-                    <div key={i} className="min-w-full h-full shrink-0">
-                      <img
-                        src={src}
-                        alt=""
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </>
-            ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="flex flex-col items-center gap-2 opacity-15">
-                  <svg
-                    width="32"
-                    height="32"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.2"
+        {/* Foto com moldura */}
+        <div className="mx-3 my-3" style={{ position: "relative", zIndex: 2 }}>
+          <div style={frameWrapStyle}>
+            <div style={frameInnerStyle}>
+              <div className="relative overflow-hidden w-full" style={{ aspectRatio: "9/16" }}>
+                {photos.length > 0 ? (
+                  <div
+                    className="flex transition-transform duration-500 ease-in-out h-full"
+                    style={{ transform: `translateX(-${slideIdx * 100}%)` }}
                   >
-                    <rect x="3" y="3" width="18" height="18" rx="3" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <path d="M21 15l-5-5L5 21" />
-                  </svg>
-                  <span className="text-[10px] text-white/50">suas fotos</span>
-                </div>
+                    {photos.map((src, i) => (
+                      <div key={i} className="w-full h-full shrink-0">
+                        <img src={src} alt="" className="w-full h-full object-cover block" />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-white/5">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="1.2">
+                      <rect x="3" y="3" width="18" height="18" rx="3" />
+                      <circle cx="8.5" cy="8.5" r="1.5" />
+                      <path d="M21 15l-5-5L5 21" />
+                    </svg>
+                  </div>
+                )}
+                {photos.length > 1 && (
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+                    {photos.map((_, i) => (
+                      <button key={i} onClick={() => setSlideIdx(i)}
+                        className="h-1 rounded-full border-none p-0 cursor-pointer transition-all duration-300"
+                        style={{ width: i === slideIdx ? 14 : 4, background: i === slideIdx ? "#fff" : "rgba(255,255,255,0.4)" }}
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
+            </div>
+            {(frame === "polaroid" || frame === "vintage") && (
+              <p className="text-center text-[8px] tracking-widest uppercase mt-2 font-medium"
+                style={{ color: frame === "vintage" ? "rgba(0,0,0,0.25)" : "rgba(0,0,0,0.2)" }}>
+                eternare
+              </p>
             )}
           </div>
         </div>
 
-        {/* Dots do carrossel */}
-        <div
-          className="flex justify-center gap-1.25 py-2"
-          style={{ background: bgColor }}
-        >
-          {(photos.length > 0 ? photos : [null]).map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setSlideIdx(i)}
-              className="h-1.5 rounded-full transition-all duration-300"
-              style={{
-                width: i === slideIdx ? 18 : 6,
-                background:
-                  i === slideIdx ? "#b06fff" : "rgba(255,255,255,0.22)",
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Corpo da memória */}
-        <div
-          className="flex flex-col gap-2 px-3 pb-4"
-          style={{ background: bgColor }}
-        >
-          {/* Contador */}
+        {/* Corpo */}
+        <div className="flex flex-col gap-2 px-3 pb-5" style={{ background: bgColor, position: "relative", zIndex: 2 }}>
           <div className="rounded-lg border border-[#7c6aff]/20 bg-[#7c6aff]/10 px-2 py-1.5 text-center">
-            <p className="text-[9.5px] font-medium leading-relaxed text-[#b06fff]">
-              {counter}
-            </p>
+            <p className="text-[8px] font-medium text-[#b06fff]">{counter}</p>
           </div>
 
-          {/* Título */}
-          <div className="flex items-start gap-2">
-            <div className="w-0.75 self-stretch rounded-sm shrink-0 bg-red-600" />
+          <div className="flex items-start gap-1.5">
+            <div className="w-0.5 self-stretch rounded-sm shrink-0 bg-red-600" />
             {title ? (
-              <p className="text-[15px] font-bold uppercase tracking-wider break-words w-full text-white leading-tight">
+              <p className="text-[13px] font-bold uppercase tracking-wider text-white leading-tight break-words w-full"
+                style={{ fontFamily: getFontFamily(fontStyle ?? "moderna") }}>
                 {title}
               </p>
             ) : (
-              <p className="text-[11px] text-white/30 italic">
-                Seu título aqui
-              </p>
+              <p className="text-[10px] text-white/30 italic">Seu título aqui</p>
             )}
           </div>
 
-          {/* Texto */}
           {text ? (
-            <div className="max-h-40  overflow-y-auto scroll-smooth no-scrollbar pt-5">
-              <p className="text-[11px] text-white/75 leading-relaxed break-words whitespace-normal">
-                {text}
-              </p>
-            </div>
-          ) : (
-            <p className="text-[11px] text-white/20 italic">
-              O texto da sua memória aparecerá aqui...
+            <p className="text-[10px] leading-relaxed whitespace-pre-wrap break-words"
+              style={{ color: "rgba(240,238,248,0.7)", fontFamily: getFontFamily(textFont ?? "moderna") }}>
+              {text}
             </p>
+          ) : (
+            <p className="text-[10px] text-white/20 italic">O texto da sua memória aparecerá aqui...</p>
           )}
         </div>
       </div>
-    </div>
-  );
-}
-
-// ── barra de progresso do Spotify (animada em CSS) ────────────────────────────
-function SpotifyProgressBar() {
-  const [fill, setFill] = useState(35);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setFill((prev) => (prev >= 100 ? 0 : prev + 0.15));
-    }, 100);
-    return () => clearInterval(id);
-  }, []);
-
-  return (
-    <div className="h-0.5 rounded-full bg-white/10 mx-1">
-      <div
-        className="h-full rounded-full bg-[#1db954] transition-none"
-        style={{ width: `${fill.toFixed(1)}%` }}
-      />
     </div>
   );
 }
