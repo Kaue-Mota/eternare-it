@@ -38,6 +38,7 @@ const createMemorySchema = z.object({
   fontStyle: z.string().default('moderna'),
   textFont: z.string().default('moderna'),
   frameStyle: z.string().default('polaroid'),
+  bgAnimation: z.string().default('none'),
 })
 
 // ── GET /api/memory/:slug ─────────────────────────────────────────────────────
@@ -68,6 +69,7 @@ memoryRouter.get("/:slug", async (req, res) => {
       fontStyle: memory.fontStyle ?? 'moderna',
       textFont: memory.textFont ?? 'moderna',
       frameStyle: memory.frameStyle ?? 'polaroid',
+      bgAnimation: memory.bgAnimation ?? 'none',
     });
   } catch (err) {
     console.error(err);
@@ -120,6 +122,7 @@ memoryRouter.post(
           fontStyle: parsed.data.fontStyle || 'moderna', 
           textFont: parsed.data.textFont || 'moderna',
           frameStyle: parsed.data.frameStyle || 'polaroid',
+          bgAnimation: parsed.data.bgAnimation || 'none',
           paid: false,
           
         },
