@@ -35,6 +35,7 @@ const createMemorySchema = z.object({
   bgColor: z.string().min(1),
   spotifyUrl: z.string().optional(),
   emoji: z.string().default('❤️'), 
+  fontStyle: z.string().default('moderna'),
 })
 
 // ── GET /api/memory/:slug ─────────────────────────────────────────────────────
@@ -62,6 +63,7 @@ memoryRouter.get("/:slug", async (req, res) => {
       spotifyUrl: memory.spotifyUrl ?? undefined,
       photos: memory.photos,
       emoji: memory.emoji ?? "❤️",
+      fontStyle: memory.fontStyle ?? 'moderna',
     });
   } catch (err) {
     console.error(err);
@@ -110,8 +112,10 @@ memoryRouter.post(
           bgColor,
           spotifyUrl: spotifyUrl || null,
           photos: photoUrls,
-          emoji: parsed.data.emoji || "❤️", // ← precisa estar aqui
+          emoji: parsed.data.emoji || "❤️", 
+          fontStyle: parsed.data.fontStyle || 'moderna', 
           paid: false,
+          
         },
       });
 

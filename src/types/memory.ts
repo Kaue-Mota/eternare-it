@@ -7,7 +7,8 @@ export interface MemoryFormData {
   date: string
   text: string
   bgColor: string
-  emoji: string  
+  emoji: string
+  fontStyle: string   // ← adicione
   spotifyUrl: string
 }
 
@@ -33,6 +34,7 @@ export const INITIAL_FORM_DATA: MemoryFormData = {
   text: '',
   bgColor: BG_COLORS[0].hex,
   emoji: '❤️',
+  fontStyle: 'moderna',  // ← adicione
   spotifyUrl: '',
 }
 
