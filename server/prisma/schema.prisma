@@ -18,9 +18,10 @@ model Memory {
   bgColor         String
   spotifyUrl      String?
   photos          String[]
-  emoji           String   @default("❤️")  // ← adicione essa linha
+  emoji           String   @default("❤️") 
   fontStyle  String  @default("moderna")
   textFont   String  @default("moderna")
+  frameStyle String @default("polaroid")
 
   paid            Boolean  @default(false)
   stripeSessionId String?  @unique

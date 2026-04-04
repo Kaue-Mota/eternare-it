@@ -10,6 +10,7 @@ export interface MemoryFormData {
   emoji: string
   fontStyle: string  
   textFont: string  
+  frameStyle: string,
   spotifyUrl: string
 }
 
@@ -37,6 +38,7 @@ export const INITIAL_FORM_DATA: MemoryFormData = {
   emoji: '❤️',
   fontStyle: 'moderna',  
   textFont: 'moderna',
+  frameStyle: 'polaroid',
   spotifyUrl: '',
 }
 
