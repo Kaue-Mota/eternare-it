@@ -3,7 +3,7 @@ import HomePage from "../pages/Home/HomePage";
 import { CreatePage } from "../pages/CreatePage/CreatePage";
 import { SuccessPage } from "../pages/SuccessPage";
 import MemoryPage from "../pages/Memory/MemoryPage";
-import { MemoryPagePreview } from "../pages/Memory/MemoryPagePreview";
+
 import { TermsPage } from "../pages/Legal/TermsPage";
 import { PrivacyPage } from "../pages/Legal/PrivacyPage";
 import { RefundPage } from "../pages/Legal/RefundPage";
@@ -20,7 +20,7 @@ export const Router = () => {
       <Route path="/suporte" element={<SupportPage />} />
       <Route path="/m/:slug" element={<MemoryPage />} />
       <Route path="/sucesso" element={<SuccessPage />} />
-      <Route path="/preview-memoria" element={<MemoryPagePreview />} />
+     
       <Route path="/termos" element={<TermsPage />} />
       <Route path="/privacidade" element={<PrivacyPage />} />
       <Route path="/reembolso" element={<RefundPage />} />

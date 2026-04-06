@@ -92,7 +92,7 @@ function PhotoCarousel({ photos, frameStyle }: { photos: string[]; frameStyle: s
                 {photos.map((_, i) => (
                   <button key={i} onClick={() => setIdx(i)}
                     className="h-1.5 rounded-full border-none cursor-pointer transition-all duration-300 p-0"
-                    style={{ width: i === idx ? 20 : 6, background: i === idx ? "#fff" : "rgba(255,255,255,0.5)" }}
+                    style={{ width: i === idx ? 20 : 6, background: i === idx ? "rgba(255,106,255,1)" : "rgba(124,106,255,0.9)" }}
                   />
                 ))}
               </div>
@@ -274,12 +274,12 @@ export default function MemoryPage() {
           <div className="max-w-4xl mx-auto px-6 py-8 flex flex-col lg:flex-row gap-8 items-start">
 
             {/* Coluna esquerda — carrossel */}
-            <div className="lg:w-80 lg:flex-shrink-0">
+            <div className="w-full lg:w-100 lg:flex-shrink-0">
               <PhotoCarousel photos={memory.photos} frameStyle={memory.frameStyle} />
             </div>
 
             {/* Coluna direita — conteúdo */}
-            <div className="flex-1 flex flex-col gap-0 ">
+            <div className="flex-1 flex flex-col gap-0  w-full lg:w-80 lg:flex-shrink-0">
               <div
                 className="rounded-2xl p-6"
                 style={{ background: "rgba(0,0,0,0.25)", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.07)" }}
@@ -291,9 +291,9 @@ export default function MemoryPage() {
                 </div>
 
                 {/* Título */}
-                <div className="flex items-start gap-2.5 mb-3">
-                  <div className="w-[3px] self-stretch rounded-sm flex-shrink-0 bg-red-600" />
-                  <h1 className="text-[clamp(22px,4vw,36px)] font-extrabold uppercase tracking-widest text-white leading-tight break-words m-0"
+                <div className="flex  items-start gap-2.5 mb-3">
+                  <div className="w-0.75 self-stretch rounded-sm flex-shrink-0 bg-red-600" />
+                  <h1 className="wrap-break-word  w-full p-1 text-[clamp(22px,4vw,36px)] font-extrabold uppercase tracking-widest text-white leading-tight  m-0"
                     style={{ fontFamily: titleFont, textShadow: "0 2px 12px rgba(0,0,0,0.5)" }}>
                     {memory.title}
                   </h1>
