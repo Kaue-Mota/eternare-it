@@ -279,7 +279,7 @@ export default function MemoryPage() {
             </div>
 
             {/* Coluna direita — conteúdo */}
-            <div className="flex-1 flex flex-col gap-0">
+            <div className="flex-1 flex flex-col gap-0 lg:w-80 lg:flex-shrink-0">
               <div
                 className="rounded-2xl p-6"
                 style={{ background: "rgba(0,0,0,0.25)", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.07)" }}
