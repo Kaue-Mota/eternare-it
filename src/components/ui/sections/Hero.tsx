@@ -71,14 +71,14 @@ export default function Hero() {
           <div className=" flex justify-center flex-wrap gap-3">
             <button
               onClick={() => navigate("/criar")}
-              className=" rounded-xl px-6 py-3.5 w-full h-30 text-lg font-extrabold hover:cursor-pointer text-white transition-all hover:-translate-y-0.5 hover:opacity-90"
+              className=" flex text-center items-center gap-2 uppercase justify-center align-center   rounded-xl px-6 py-3.5 w-full h-30 text-lg font-extrabold hover:cursor-pointer text-white transition-all hover:-translate-y-0.5 hover:opacity-90"
               style={{
                 background: "linear-gradient(135deg, #7c6aff, #b06fff)",
                 boxShadow: "0 0 32px rgba(124,106,255,0.3)",
-                animation: "badge-pulse-button 2s ease-in-out infinite",
+                animation: "badge-pulse-button 5s ease-in-out infinite",
               }}
             >
-              Criar minha memória
+              <span className="text-4xl">+</span> Criar memória
             </button>
           </div>
         </div>
