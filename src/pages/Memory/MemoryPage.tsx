@@ -430,7 +430,9 @@ export default function MemoryPage() {
           onReveal={() => setRevealed(true)}
         />
       )}
-      {revealed && <EmojiRain emoji={emoji} />}
+      {revealed && memory.emoji && memory.emoji !== "none" && (
+        <EmojiRain emoji={memory.emoji} />
+      )}
 
       {revealed && (
         <div className="max-w-lg mx-auto pb-16 relative" style={{ zIndex: 2 }}>
@@ -526,9 +528,7 @@ export default function MemoryPage() {
                     style={{
                       background: "linear-gradient(135deg, #7c6aff, #b06fff)",
                     }}
-                  >
-                    
-                  </div>
+                  ></div>
                   <span
                     className="text-[12px] font-medium"
                     style={{ color: "rgba(255,255,255,0.25)" }}

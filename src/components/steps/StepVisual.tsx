@@ -25,8 +25,6 @@ export const ANIMATION_OPTIONS = [
   { id: 'none', label: 'Nenhum', icon: '◯' },
   { id: 'stars', label: 'Estrelas', icon: '⭐' },
   { id: 'sparkles', label: 'Brilhos', icon: '✨' },
-  { id: 'waves', label: 'Ondas', icon: '🌊' },
-  { id: 'candles', label: 'Velas', icon: '🕯️' },
   { id: 'flames', label: 'Chamas', icon: '🔥' },
 ]
 
@@ -107,7 +105,7 @@ export function StepVisual({ data, onChange, onNext, onBack }: Props) {
       {/* Animação de fundo */}
       <div className="flex flex-col gap-2">
         <span className="text-[11px] text-white/50 tracking-wide uppercase">Animação de fundo</span>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-4 gap-2">
           {ANIMATION_OPTIONS.map((anim) => {
             const isSelected = currentAnimation === anim.id
             return (
@@ -119,7 +117,7 @@ export function StepVisual({ data, onChange, onNext, onBack }: Props) {
                   border: isSelected ? '1px solid rgba(124,106,255,0.4)' : '1px solid rgba(255,255,255,0.07)',
                 }}
               >
-                <span style={{ fontSize: 22 }}>{anim.icon}</span>
+                <span style={{ fontSize: 20 }}>{anim.icon}</span>
                 <span className="text-[10px] font-medium"
                   style={{ color: isSelected ? '#b06fff' : 'rgba(255,255,255,0.5)' }}>
                   {anim.label}
