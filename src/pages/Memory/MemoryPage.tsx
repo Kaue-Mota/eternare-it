@@ -274,12 +274,12 @@ export default function MemoryPage() {
           <div className="max-w-4xl mx-auto px-6 py-8 flex flex-col lg:flex-row gap-8 items-start">
 
             {/* Coluna esquerda — carrossel */}
-            <div className="w-full lg:w-80 lg:flex-shrink-0">
+            <div className="lg:w-80 lg:flex-shrink-0">
               <PhotoCarousel photos={memory.photos} frameStyle={memory.frameStyle} />
             </div>
 
             {/* Coluna direita — conteúdo */}
-            <div className="flex-1 flex flex-col gap-0 lg:w-80 lg:flex-shrink-0">
+            <div className="flex-1 flex flex-col gap-0 ">
               <div
                 className="rounded-2xl p-6"
                 style={{ background: "rgba(0,0,0,0.25)", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.07)" }}
