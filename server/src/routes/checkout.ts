@@ -43,6 +43,7 @@ checkoutRouter.post('/', async (req, res) => {
             product_data: {
               name: `Memória: ${memory.title}`,
               description: 'Página digital exclusiva, link permanente e QR Code',
+              images: memory.photos.slice(0, 1),
              
             },
           },
