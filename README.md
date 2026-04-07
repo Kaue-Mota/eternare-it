@@ -1,4 +1,5 @@
 # 🔥 Eternare
+<img width="1517" height="940" alt="image" src="https://github.com/user-attachments/assets/a9b99acb-9fe5-494e-a6f4-0b2a34761128" />
 
 > Transforme memórias em páginas digitais únicas e compartilháveis.
 
