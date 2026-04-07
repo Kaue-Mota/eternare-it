@@ -5,9 +5,7 @@ import { prisma } from '../lib/prisma.js'
 
 export const checkoutRouter = Router()
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-01-27.acacia',
-})
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
 // ── POST /api/checkout ────────────────────────────────────────────────────────
 // Recebe o slug da memória já criada e gera uma Checkout Session no Stripe
