@@ -199,11 +199,21 @@ export function StepReview({ data, onEdit, onBack }: Props) {
           </p>
         </div>
         <div className="text-right">
-          <p className="text-[20px] font-semibold text-white">R$ 19,90</p>
+          <div className="flex items-center gap-2 justify-end">
+            <span className="text-[13px] text-white/30 line-through">
+              R$ 19,99
+            </span>
+            <span
+              className="text-[10px] font-semibold px-2 py-0.5 rounded-full"
+              style={{ background: "rgba(124,106,255,0.2)", color: "#b06fff" }}
+            >
+              PROMO
+            </span>
+          </div>
+          <p className="text-[20px] font-semibold text-white">R$ 14,90</p>
           <p className="text-[10px] text-white/30">pagamento único</p>
         </div>
       </div>
-
       {/* Erro */}
       {error && (
         <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3">

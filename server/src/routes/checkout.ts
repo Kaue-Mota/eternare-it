@@ -6,7 +6,7 @@ import { prisma } from '../lib/prisma.js'
 export const checkoutRouter = Router()
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16',
+  apiVersion: '2025-01-27.acacia',
 })
 
 // ── POST /api/checkout ────────────────────────────────────────────────────────
@@ -32,16 +32,18 @@ checkoutRouter.post('/', async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       payment_method_types: ['card'],
+      billing_address_collection: 'auto',
+      customer_creation: 'always',
       line_items: [
         {
           quantity: 1,
           price_data: {
             currency: 'brl',
-            unit_amount: Number(process.env.STRIPE_PRICE_AMOUNT) || 1990, // R$ 19,90
+            unit_amount: Number(process.env.STRIPE_PRICE_AMOUNT) || 1490, // R$ 14,90
             product_data: {
               name: `Memória: ${memory.title}`,
               description: 'Página digital exclusiva, link permanente e QR Code',
-              images: memory.photos.slice(0, 1), // primeira foto no checkout
+             
             },
           },
         },
