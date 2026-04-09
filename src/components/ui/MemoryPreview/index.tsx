@@ -89,7 +89,7 @@ export function MemoryPreview({ data }: Props) {
       <div
         className="rounded-[30px] border-2 border-white/10 overflow-hidden flex flex-col relative"
         style={{
-          width: 320,
+          width: 300,
           padding: 20,
           background: bgColor,
           boxShadow: "0 0 0 1px rgba(255,255,255,0.04), 0 20px 50px rgba(0,0,0,0.7)",
