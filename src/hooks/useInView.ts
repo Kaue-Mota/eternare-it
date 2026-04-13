@@ -1,0 +1,27 @@
+// src/hooks/useInView.ts
+// Hook compartilhado de IntersectionObserver — dispara uma vez quando o elemento entra na viewport
+
+import { useEffect, useRef, useState } from 'react'
+
+export function useInView(threshold = 0.18) {
+  const ref = useRef<HTMLElement | null>(null)
+  const [inView, setInView] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true)
+          obs.disconnect()
+        }
+      },
+      { threshold }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [threshold])
+
+  return { ref, inView }
+}
