@@ -13,7 +13,6 @@ const STEPS = [
     ),
     title: 'Preencha os detalhes',
     text: 'Adicione fotos, título, data, texto e a música que marca esse momento.',
-    from: 'left',
   },
   {
     number: '02',
@@ -25,7 +24,6 @@ const STEPS = [
     ),
     title: 'Veja o preview',
     text: 'Acompanhe em tempo real como sua página está ficando enquanto preenche.',
-    from: 'bottom',
   },
   {
     number: '03',
@@ -37,7 +35,6 @@ const STEPS = [
     ),
     title: 'Finalize o pagamento',
     text: 'Pagamento seguro via Stripe. Insira um email válido para receber sua memória.',
-    from: 'bottom',
   },
   {
     number: '04',
@@ -49,7 +46,6 @@ const STEPS = [
     ),
     title: 'Compartilhe para sempre',
     text: 'Receba seu link exclusivo e QR Code. Sua memória está viva para sempre.',
-    from: 'right',
   },
 ]
 
@@ -70,12 +66,6 @@ const HOW_STYLES = `
     opacity: 1 !important;
   }
 `
-
-function fromTransform(from: string): string {
-  if (from === 'left')   return 'translateX(-48px)'
-  if (from === 'right')  return 'translateX(48px)'
-  return 'translateY(40px)'
-}
 
 function StepCard({ step, index }: { step: typeof STEPS[0]; index: number }) {
   const ref = useRef<HTMLDivElement | null>(null)
@@ -99,7 +89,7 @@ function StepCard({ step, index }: { step: typeof STEPS[0]; index: number }) {
       style={{
         borderLeft: index > 0 ? '1px solid rgba(255,255,255,0.05)' : 'none',
         opacity: visible ? 1 : 0,
-        transform: visible ? 'none' : fromTransform(step.from),
+        transform: visible ? 'none' : 'translateY(40px)',
         transition: `opacity 0.75s cubic-bezier(0.16,1,0.3,1) ${index * 0.08}s, transform 0.75s cubic-bezier(0.16,1,0.3,1) ${index * 0.08}s`,
       }}
     >
@@ -160,7 +150,7 @@ export function HowItWorks() {
   return (
     <section
       className="py-28 px-6 relative z-10"
-      style={{ background: 'rgba(5,6,18,0.82)', backdropFilter: 'blur(16px)' }}
+      style={{ background: 'rgba(5,6,18,0.92)' }}
     >
       <style>{HOW_STYLES}</style>
       <div className="max-w-5xl mx-auto">
@@ -232,10 +222,12 @@ export function HowItWorks() {
         </div>
 
         {/* Steps — cada um com seu próprio observer */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0">
-          {STEPS.map((step, i) => (
-            <StepCard key={step.number} step={step} index={i} />
-          ))}
+        <div className="overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0">
+            {STEPS.map((step, i) => (
+              <StepCard key={step.number} step={step} index={i} />
+            ))}
+          </div>
         </div>
 
       </div>

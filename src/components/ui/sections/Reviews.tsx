@@ -83,9 +83,11 @@ const MARQUEE_STYLES = `
   }
   .marquee-track-left {
     animation: marquee-left 40s linear infinite;
+    will-change: transform;
   }
   .marquee-track-right {
     animation: marquee-right 34s linear infinite;
+    will-change: transform;
   }
   .marquee-track-left:hover,
   .marquee-track-right:hover {

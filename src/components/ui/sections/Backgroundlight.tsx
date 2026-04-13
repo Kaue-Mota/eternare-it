@@ -1,7 +1,7 @@
 // src/components/ui/BackgroundLight.tsx
 // Fundo animado leve — CSS puro, sem canvas, sem WebGL
 
-const STARS = Array.from({ length: 60 }, (_, i) => ({
+const STARS = Array.from({ length: 18 }, (_, i) => ({
   id: i,
   x: Math.random() * 100,
   y: Math.random() * 100,
@@ -36,6 +36,10 @@ export function BackgroundLight() {
           0%, 100% { opacity: var(--s-op); transform: scale(1); }
           50% { opacity: calc(var(--s-op) * 0.1); transform: scale(0.3); }
         }
+        @media (max-width: 767px) {
+          .bg-star { animation: none !important; }
+          .bg-blob { animation: none !important; }
+        }
       `}</style>
 
       {/* Base escura */}
@@ -45,7 +49,7 @@ export function BackgroundLight() {
       {STARS.map((s) => (
         <div
           key={s.id}
-          className="absolute rounded-full"
+          className="bg-star absolute rounded-full"
           style={{
             left: `${s.x}%`,
             top: `${s.y}%`,
@@ -61,7 +65,7 @@ export function BackgroundLight() {
 
       {/* Blob 1 — roxo, topo esquerdo */}
       <div
-        className="absolute rounded-full"
+        className="bg-blob absolute rounded-full"
         style={{
           width: 700,
           height: 700,
@@ -74,7 +78,7 @@ export function BackgroundLight() {
 
       {/* Blob 2 — azul, centro direito */}
       <div
-        className="absolute rounded-full"
+        className="bg-blob absolute rounded-full"
         style={{
           width: 800,
           height: 800,
@@ -88,7 +92,7 @@ export function BackgroundLight() {
 
       {/* Blob 3 — roxo claro, centro */}
       <div
-        className="absolute rounded-full"
+        className="bg-blob absolute rounded-full"
         style={{
           width: 600,
           height: 600,
@@ -102,7 +106,7 @@ export function BackgroundLight() {
 
       {/* Blob 4 — azul escuro, rodapé */}
       <div
-        className="absolute rounded-full"
+        className="bg-blob absolute rounded-full"
         style={{
           width: 600,
           height: 600,
@@ -116,7 +120,7 @@ export function BackgroundLight() {
 
       {/* Blob 5 — drift suave */}
       <div
-        className="absolute rounded-full"
+        className="bg-blob absolute rounded-full"
         style={{
           width: 400,
           height: 400,

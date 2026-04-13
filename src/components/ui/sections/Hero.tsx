@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 
-const PARTICLES = Array.from({ length: 38 }, (_, i) => ({
+const PARTICLES = Array.from({ length: 20 }, (_, i) => ({
   id: i,
   x: Math.random() * 100,
   y: Math.random() * 100,
@@ -19,6 +19,9 @@ const HERO_STYLES = `
   @keyframes twinkle {
     0%, 100% { opacity: var(--max-op); transform: scale(1); }
     50% { opacity: calc(var(--max-op) * 0.15); transform: scale(0.4); }
+  }
+  @media (max-width: 767px) {
+    .hero-particle { animation: none !important; }
   }
   @keyframes badge-ring {
     0%, 100% { box-shadow: 0 0 0 0 rgba(124,106,255,0); }
@@ -98,7 +101,7 @@ export default function Hero() {
         {particlesRef.current.map((p) => (
           <div
             key={p.id}
-            className="absolute rounded-full"
+            className="hero-particle absolute rounded-full"
             style={{
               left: `${p.x}%`,
               top: `${p.y}%`,
