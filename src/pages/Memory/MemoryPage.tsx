@@ -61,7 +61,7 @@ function LiveCounter({ date }: { date: string }) {
   return (
     <div className="flex flex-col items-center gap-3 w-full overflow-hidden">
       <p className="text-[9px] tracking-[0.22em] uppercase" style={{ color: "rgba(255,255,255,0.28)" }}>
-        juntos há
+        uma memória de
       </p>
       <div className="flex items-end justify-center flex-wrap gap-y-2 w-full">
         {segs.map((seg, i) => (
