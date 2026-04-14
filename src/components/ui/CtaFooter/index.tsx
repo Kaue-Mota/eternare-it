@@ -100,7 +100,7 @@ export function Cta() {
                 transition: 'clip-path 1s cubic-bezier(0.16,1,0.3,1) 0.35s',
               }}
             >
-              durar para sempre
+              ser lembrado com carinho
             </em>
           </h2>
         </div>
@@ -154,7 +154,7 @@ export function Cta() {
             transition: 'opacity 0.7s ease 0.2s',
           }}
         >
-          {['🔒 Pagamento seguro', '🔗 Link permanente', '📧 QR Code por email'].map((g) => (
+          {['🔒 Pagamento seguro', '🔗 Link exclusivo', '📧 QR Code por email'].map((g) => (
             <span key={g} className="text-[12px]" style={{ color: 'rgba(240,238,248,0.28)' }}>
               {g}
             </span>

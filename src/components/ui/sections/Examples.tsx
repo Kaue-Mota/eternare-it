@@ -11,7 +11,7 @@ const EXAMPLES = [
     title: 'EU TE AMO',
     date: '12 de junho de 2021',
     counter: '4 anos, 285 dias',
-    text: 'Cada dia ao seu lado é um presente que guardo para sempre no coração.',
+    text: 'Cada dia ao seu lado é um presente que carrego comigo no coração.',
     emoji: '❤️',
     // direção de entrada
     from: 'left',
@@ -202,7 +202,7 @@ export function Examples() {
                   transition: 'clip-path 0.9s cubic-bezier(0.16,1,0.3,1) 0.38s',
                 }}
               >
-                ser eternizados
+                ser lembrados
               </em>
             </h2>
           </div>

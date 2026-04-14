@@ -44,8 +44,8 @@ const STEPS = [
         <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
       </svg>
     ),
-    title: 'Compartilhe para sempre',
-    text: 'Receba seu link exclusivo e QR Code. Sua memória está viva para sempre.',
+    title: 'Compartilhe quando quiser',
+    text: 'Receba seu link exclusivo e QR Code. Sua memória está pronta para ser compartilhada.',
   },
 ]
 

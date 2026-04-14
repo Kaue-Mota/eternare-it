@@ -43,7 +43,7 @@ export function StepReview({ data, onEdit, onBack }: Props) {
     },
     { label: "Título", value: data.title || "—", step: 2 },
     { label: "Data", value: formatDate(data.date), step: 2 },
-    { label: "Tempo eternizado", value: calcDays(data.date), step: 2 },
+    { label: "Tempo celebrado", value: calcDays(data.date), step: 2 },
     { label: "Emoji", value: data.emoji, step: 5 },
     {
       label: "Texto",
@@ -169,7 +169,7 @@ export function StepReview({ data, onEdit, onBack }: Props) {
                 i % 2 === 0 ? "rgba(255,255,255,0.02)" : "transparent",
             }}
           >
-            <span className="text-[11px] text-white/40 flex-shrink-0">
+            <span className="text-[11px] text-white/40 shrink-0">
               {label}
             </span>
             <div className="flex items-center gap-3 min-w-0">
@@ -179,7 +179,7 @@ export function StepReview({ data, onEdit, onBack }: Props) {
               <button
                 type="button"
                 onClick={() => onEdit(step)}
-                className="text-[10px] text-[#7c6aff] hover:text-[#b06fff] transition-colors flex-shrink-0"
+                className="text-[10px] text-[#7c6aff] hover:text-[#b06fff] transition-colors shrink-0"
               >
                 editar
               </button>
@@ -189,13 +189,13 @@ export function StepReview({ data, onEdit, onBack }: Props) {
       </div>
 
       {/* Preço */}
-      <div className="rounded-xl border border-[#7c6aff]/20 bg-[#7c6aff]/[0.06] px-4 py-4 flex items-center justify-between">
+      <div className="rounded-xl border border-[#7c6aff]/20 bg-[#7c6aff]/6 px-4 py-4 flex items-center justify-between">
         <div>
           <p className="text-[13px] font-medium text-white">
-            Memória eternizada
+            Memória criada
           </p>
           <p className="text-[11px] text-white/40 mt-0.5">
-            Página pública + link permanente + QR Code
+            Página pública + link exclusivo + QR Code
           </p>
         </div>
         <div className="text-right">
@@ -227,7 +227,7 @@ export function StepReview({ data, onEdit, onBack }: Props) {
           type="button"
           onClick={onBack}
           disabled={loading}
-          className="rounded-lg border border-white/8 px-4 py-[10px] text-[13px] text-white/50 hover:text-white transition-colors disabled:opacity-30"
+          className="rounded-lg border border-white/8 px-4 py-2.5 text-[13px] text-white/50 hover:text-white transition-colors disabled:opacity-30"
         >
           ← Editar
         </button>
@@ -235,7 +235,7 @@ export function StepReview({ data, onEdit, onBack }: Props) {
           type="button"
           onClick={handleCheckout}
           disabled={loading}
-          className="flex-1 rounded-lg py-[10px] text-[13px] font-medium text-white transition-opacity hover:opacity-88 flex items-center justify-center gap-2 disabled:opacity-60"
+          className="flex-1 rounded-lg py-2.5 text-[13px] font-medium text-white transition-opacity hover:opacity-88 flex items-center justify-center gap-2 disabled:opacity-60"
           style={{ background: "linear-gradient(135deg, #7c6aff, #b06fff)" }}
         >
           {loading ? (

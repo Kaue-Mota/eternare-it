@@ -23,7 +23,7 @@ export function AboutPage() {
             <em style={{ color: '#b06fff' }}>vontade simples</em>
           </h1>
           <p className="text-[15px] leading-relaxed" style={{ color: 'rgba(240,238,248,0.5)' }}>
-            Guardar o que importa de um jeito bonito, acessível e para sempre.
+            Guardar o que importa de um jeito bonito e acessível.
           </p>
         </div>
 
@@ -40,7 +40,7 @@ export function AboutPage() {
             O Eternare surgiu para mudar isso. Criamos uma forma de transformar momentos especiais em páginas digitais únicas — com fotos, músicas, palavras e uma contagem do tempo que não para.
           </p>
           <p className="text-[15px] leading-relaxed" style={{ color: 'rgba(240,238,248,0.6)' }}>
-            Cada memória criada aqui tem um link permanente e um QR Code para compartilhar. É simples, bonito e dura para sempre.
+            Cada memória criada aqui tem um link exclusivo e um QR Code para compartilhar. É simples e bonito.
           </p>
         </div>
 
@@ -53,9 +53,9 @@ export function AboutPage() {
 
           <div className="flex flex-col gap-4">
             {[
-              { emoji: '🕯️', title: 'Eternizar o que importa', text: 'Acreditamos que momentos especiais merecem um lugar permanente — não só na memória, mas na internet.' },
+              { emoji: '🕯️', title: 'Guardar o que importa', text: 'Acreditamos que momentos especiais merecem uma página bonita — não só na memória, mas registrado de forma especial.' },
               { emoji: '✨', title: 'Simplicidade com beleza', text: 'Criar uma memória deve ser tão fácil quanto sentir ela. Por isso o processo é rápido, intuitivo e o resultado é visualmente bonito.' },
-              { emoji: '🔒', title: 'Seu momento, sua página', text: 'Cada memória é única. O link é seu, o QR Code é seu, o conteúdo é seu — para sempre.' },
+              { emoji: '🔒', title: 'Seu momento, sua página', text: 'Cada memória é única. O link é seu, o QR Code é seu, o conteúdo é seu.' },
             ].map((item) => (
               <div
                 key={item.title}
@@ -81,7 +81,7 @@ export function AboutPage() {
             className="text-2xl font-light mb-2"
             style={{ fontFamily: 'Georgia, serif', color: '#f0eef8' }}
           >
-            Pronto para eternizar um momento?
+            Pronto para criar sua memória?
           </p>
           <p className="text-[13px] mb-6" style={{ color: 'rgba(240,238,248,0.4)' }}>
             Crie sua primeira memória em menos de 5 minutos.

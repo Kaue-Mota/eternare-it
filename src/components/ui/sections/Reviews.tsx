@@ -40,7 +40,7 @@ const REVIEWS = [
     initials: 'JR',
     color: 'linear-gradient(135deg, #ff8c42, #cc5500)',
     stars: 5,
-    text: 'Dei de presente para minha avó no Dia das Mães. Ela ficou impressionada com como ficou bonito. Uma recordação para sempre.',
+    text: 'Dei de presente para minha avó no Dia das Mães. Ela ficou impressionada com como ficou bonito. Uma recordação muito especial.',
   },
   {
     name: 'Lucas Mendes',
@@ -192,7 +192,7 @@ export function Reviews() {
                 transition: 'clip-path 0.9s cubic-bezier(0.16,1,0.3,1) 0.35s',
               }}
             >
-              eternizou
+              guardou
             </em>
           </h2>
         </div>

@@ -150,7 +150,7 @@ export default function Hero() {
               className="h-1.5 w-1.5 rounded-full shrink-0"
               style={{ background: "#b06fff", animation: "dot-pulse 2s ease-in-out infinite" }}
             />
-            Eternize o que importa
+            Guarde o que importa
           </div>
 
           {/* Heading */}
@@ -168,7 +168,7 @@ export default function Hero() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              páginas eternas
+              páginas digitais únicas
             </em>
           </h1>
 
@@ -178,7 +178,7 @@ export default function Hero() {
             style={{ color: "rgba(240,238,248,0.52)", ...fadeUp(0.35) }}
           >
             Crie uma página única com fotos, música e palavras que vão durar
-            para sempre — compartilhe com um link ou QR Code.
+            enquanto quiser — compartilhe com um link ou QR Code.
           </p>
 
           {/* CTA Button */}
@@ -233,7 +233,7 @@ export default function Hero() {
               <strong style={{ color: "rgba(240,238,248,0.72)", fontWeight: 600 }}>
                 2.000 memórias
               </strong>{" "}
-              eternizadas
+              criadas
             </p>
           </div>
 
@@ -244,7 +244,7 @@ export default function Hero() {
           >
             {[
               { icon: "🔒", label: "Pagamento seguro" },
-              { icon: "🔗", label: "Link permanente" },
+              { icon: "🔗", label: "Link exclusivo" },
               { icon: "📧", label: "QR Code por email" },
             ].map((g) => (
               <div key={g.label} className="flex items-center gap-1.5">

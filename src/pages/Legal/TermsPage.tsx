@@ -21,8 +21,8 @@ export function TermsPage() {
           <p>Ao acessar e utilizar o site eternare.it, você concorda com os termos descritos abaixo.</p>
 
           <Section title="1. Sobre o serviço">
-            <p>O eternare.it é uma plataforma que permite a criação de páginas digitais personalizadas para eternizar momentos especiais, incluindo fotos, textos, datas e músicas.</p>
-            <p>Após a finalização do pagamento, o usuário recebe um link único e permanente para acesso à sua memória.</p>
+            <p>O eternare.it é uma plataforma que permite a criação de páginas digitais personalizadas para registrar momentos especiais, incluindo fotos, textos, datas e músicas.</p>
+            <p>Após a finalização do pagamento, o usuário recebe um link exclusivo de acesso à sua memória, disponível enquanto o serviço estiver ativo.</p>
           </Section>
 
           <Section title="2. Responsabilidade do usuário">

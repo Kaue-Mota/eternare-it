@@ -38,7 +38,7 @@ export function SuccessPage() {
       </div>
 
       <h1 className="text-3xl font-semibold text-white text-center mb-2">
-        Memória eternizada!
+        Memória criada!
       </h1>
       <p className="text-white/50 text-center text-sm max-w-sm mb-10">
         Sua página exclusiva está pronta. Compartilhe o link ou o QR Code com quem você ama.
