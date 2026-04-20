@@ -206,37 +206,6 @@ export default function Hero() {
             </button>
           </div>
 
-          {/* Prova social */}
-          <div
-            className="flex items-center gap-3.5"
-            style={{ ...fadeUp(0.65) }}
-          >
-            {/* Avatares empilhados */}
-            <div className="flex -space-x-2.5">
-              {[
-                { c: "linear-gradient(135deg,#7c6aff,#b06fff)", l: "AM" },
-                { c: "linear-gradient(135deg,#d4537e,#993556)", l: "CS" },
-                { c: "linear-gradient(135deg,#1d9e75,#0f6e56)", l: "RL" },
-                { c: "linear-gradient(135deg,#378add,#185fa5)", l: "PC" },
-              ].map((a, i) => (
-                <div
-                  key={i}
-                  className="w-7 h-7 rounded-full border-[1.5px] flex items-center justify-center text-[9px] font-bold text-white shrink-0"
-                  style={{ background: a.c, borderColor: "#070712" }}
-                >
-                  {a.l}
-                </div>
-              ))}
-            </div>
-            <p className="text-[13px]" style={{ color: "rgba(240,238,248,0.42)" }}>
-              Mais de{" "}
-              <strong style={{ color: "rgba(240,238,248,0.72)", fontWeight: 600 }}>
-                2.000 memórias
-              </strong>{" "}
-              criadas
-            </p>
-          </div>
-
           {/* Garantias */}
           <div
             className="flex flex-wrap gap-x-5 gap-y-2"

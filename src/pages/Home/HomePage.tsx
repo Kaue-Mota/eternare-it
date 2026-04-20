@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import Header from "../../components/ui/Header/index.tsx"
 import { Examples } from "../../components/ui/sections/Examples.tsx"
-import { Reviews } from "../../components/ui/sections/Reviews.tsx"
 import { Cta, Footer } from "../../components/ui/CtaFooter/index.tsx"
 import Hero from "../../components/ui/sections/Hero.tsx"
 import { HowItWorks } from "../../components/ui/sections/Howitworks.tsx"
@@ -47,7 +46,6 @@ export default function HomePage() {
         <Hero />
         <HowItWorks />
         <Examples />
-        <Reviews />
         <Cta />
         <Footer />
       </div>
