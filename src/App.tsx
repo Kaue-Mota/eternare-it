@@ -1,4 +1,5 @@
 import { BrowserRouter } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import { Router } from './routes'
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
       <BrowserRouter>
         <Router />
       </BrowserRouter>
+      <Analytics />
     </>
       
       
